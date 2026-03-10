@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# 와이즈온 관리자 - MASTER
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 1. 사용 기술
 
-Currently, two official plugins are available:
+- **프레임워크:** React
+- **상태 관리:** Zustand
+- **UI 라이브러리:** TainwildCss, ShadcnUi
+- **테이블 라이브러리 :** Tanstack table
+- **API 통신:** Axios / React Query (TanStack Query)
+- **인증 및 권한:** JWT
+- **폼 관리:** React Hook Form + Zod
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 2. 실행 명령어
 
-## React Compiler
+### 설치
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+프로젝트 의존성 설치
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```jsx
+pnpm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 개발 서버 실행
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```jsx
+pnpm run dev
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 3. 패키지 / 디렉토리 설명
+
+### 폴더 구조
+
+feature 기반 폴더 구조
+
+```jsx
+├── public/
+├── src/
+│   ├── assets/           # 이미지, 아이콘, 파일
+│   ├── features/         # 기능별 폴더
+│   │   ├── board/          # 예시) 게시판
+│   │   │   ├── apis/           # api
+│   │   │   ├── components/     # 컴포넌트
+│   │   │   ├── hooks/          # UseQuery, UseMutation, Store, Custom hook등
+│   │   │   │   ├── queries, mutations, stores
+│   │   │   ├── schemas/        # Zod 스키마
+│   │   │   ├── types/          # 타입
+│   ├── shared/           # 공통 요소들
+│   │   ├── apis/           # 공통 api
+│   │   ├── components/     # 공통 컴포넌트
+│   │   ├── hooks/          # 공통 hooks
+│   │   ├── schemas/        # 공통 Zod 스키마
+│   │   ├── types/          # 공통 타입
+│   ├── pages/            # 페이지
+│   │   ├── board.tsx       # 예시) 게시판 페이지
+│   ├── App.tsx           # 루트 컴포넌트
+├── .env                  # 환경 변수
+├── tsconfig.json         # TypeScript 설정
+├── package.json          # 패키지 설정
 ```
