@@ -9,7 +9,12 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "commit": "npx tsx scripts/generate-commit.ts",
+        "docs": "npx tsx scripts/generate-docs.ts",
+        "docs:api": "npx tsx scripts/generate-docs.ts api",
+        "docs:structure": "npx tsx scripts/generate-docs.ts structure",
+        "release-notes": "npx tsx scripts/generate-release-notes.ts"
     },
     "dependencies": {
         "@hookform/resolvers": "^5.2.2",
@@ -34,18 +39,21 @@
         "zustand": "^5.0.11"
     },
     "devDependencies": {
+        "@anthropic-ai/sdk": "^0.78.0",
         "@eslint/js": "^9.39.1",
         "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
         "@types/node": "^24.10.1",
         "@types/react": "^19.1.8",
         "@types/react-dom": "^19.1.6",
         "@vitejs/plugin-react": "^5.1.1",
+        "dotenv": "^17.3.1",
         "eslint": "^9.29.0",
         "eslint-plugin-react-hooks": "^7.0.1",
         "eslint-plugin-react-refresh": "^0.4.24",
         "globals": "^16.5.0",
         "prettier": "^3.8.1",
         "prettier-plugin-tailwindcss": "^0.6.14",
+        "tsx": "^4.21.0",
         "typescript": "~5.8.3",
         "typescript-eslint": "^8.34.1",
         "vite": "^7.0.0"
