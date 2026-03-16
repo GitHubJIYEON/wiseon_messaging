@@ -4,17 +4,245 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --breakpoint-mobile: 360px;
+  --breakpoint-tablet: 744px;
+  --breakpoint-desktop: 1025px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* font */
+  --font-sans:
+    "AppleSDGothicNeoR", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  --font-system: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-apple-regular: "AppleSDGothicNeoR", sans-serif;
+  --font-apple-bold: "AppleSDGothicNeoB", sans-serif;
+  --font-apple-semibold: "AppleSDGothicNeoSB", sans-serif;
+  --font-apple-extra-bold: "AppleSDGothicNeoEB", sans-serif;
+  --font-apple-medium: "AppleSDGothicNeoM", sans-serif;
+  --font-apple-thin: "AppleSDGothicNeoT", sans-serif;
+  --font-applle-light: "AppleSDGothicNeoL", sans-serif;
+  --font-apple-ultra-light: "AppleSDGothicNeoUL", sans-serif;
+
+  /* Gray colors */
+  --color-gray-*: initial; /* gray 초기화 */
+
+  --color-gray-100: oklch(0.9702 0 0); /* #F5F5F5 */
+  --color-gray-200: oklch(0.9491 0 0); /* #EEE */
+  --color-gray-300: oklch(0.928 0 0); /* #E7E7E7 */
+  --color-gray-400: oklch(0.9189 0 0); /* #E4E4E4 */
+  --color-gray-500: oklch(0.7578 0.0028 286.33); /* #B0B0B2 */
+  --color-gray-600: oklch(0.5486 0 0); /* #717171 */
+  --color-gray-700: oklch(0.2393 0 0); /* #1f1f1f */
+
+  /* Point Gray colors */
+  --color-point-gray-100: oklch(0.9851 0 0); /* #FAFAFA */
+  --color-point-gray-200: oklch(0.9834 0.0042 236.5); /* #F7FAFC */
+  --color-point-gray-300: oklch(0.9668 0.0058 264.53); /* #F2F4F8 */
+  --color-point-gray-400: oklch(0.9244 0.0087 264.52); /* #E3E6EC */
+  --color-point-gray-500: oklch(0.9087 0.0105 261.79); /* #DDE1E8 */
+  --color-point-gray-600: oklch(0.769 0.0142 281.49); /* #B2B3BD */
+  --color-point-gray-700: oklch(0.6078 0.0241 282.81); /* #808191 */
+
+  /* Primary colors - 500은 그냥 primary써도 상관없음. */
+  --color-primary-50: oklch(0.962 0.02 255); /* #EBF3FE */
+  --color-primary-100: oklch(0.63 0.145 255); /* #4D8FE8 */
+  --color-primary-200: oklch(0.84 0.08 255); /* #A8CCFA */
+  --color-primary-500: var(--primary); /* #075AD3 */
+  --color-primary-600: oklch(0.42 0.18 258); /* #064BBF */
+  --color-primary-800: oklch(0.28 0.11 258); /* #032D6B */
+
+  /* Secondary colors */
+  --color-secondary-100: oklch(0.6511 0.1872 258.55); /* #3F8CFF */
+  --color-secondary-200: oklch(0.6313 0.0411 249.69); /* #778CA2 */
+
+  /* Positive colors */
+  --color-positive-500: oklch(0.732 0.1092 142.55); /* #7FBA7A */
+
+  /* Danger colors */
+  --color-danger-100: oklch(0.9736 0.0057 84.57); /* #F8F6F2 */
+  --color-danger-200: oklch(0.8761 0.1225 81.5); /* #FFCE73 */
+  --color-danger-500: oklch(0.7203 0.1779 37.2); /* #FF754C */
+  --color-danger-600: oklch(0.6831 0.2057 27.6); /* #FF574C */
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --radius: 0.625rem;
+  --header-height: 66px;
+  --sub-header-height: 80px;
+  --response-header-height: 67px;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.4726 0.1893 258.07); /* #075AD3 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.4726 0.1893 258.07); /* #075AD3 */
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(1 0 0); /* #fff */
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.58 0.17 255); /* #3B82D6 - 다크모드에서 밝게 조정 */
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.58 0.17 255);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body,
+  #root {
+    @apply h-full;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoSB";
+  src: url("/fonts/AppleSDGothicNeoSemiBold.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoB";
+  src: url("/fonts/AppleSDGothicNeoBold.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoEB";
+  src: url("/fonts/AppleSDGothicNeoExtraBold.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoM";
+  src: url("/fonts/AppleSDGothicNeoMedium.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoR";
+  src: url("/fonts/AppleSDGothicNeoRegular.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoT";
+  src: url("/fonts/AppleSDGothicNeoThin.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoL";
+  src: url("/fonts/AppleSDGothicNeoLight.woff2") format("woff2");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoUL";
+  src: url("/fonts/AppleSDGothicNeoExtraLight.woff2") format("woff2");
+  font-display: block;
+}
+
+/* Quill Editor Styles */
+@layer base {
+  .ql-editor {
+    @apply text-base;
+  }
+
+  .ql-editor.ql-blank::before {
+    @apply text-muted-foreground;
+  }
 }
