@@ -5,6 +5,7 @@ import {
   FileTextIcon,
   LayoutDashboard,
   MailIcon,
+  PhoneIcon,
   PieChartIcon,
   SendIcon,
 } from "lucide-react";
@@ -23,6 +24,7 @@ type MenuIconId =
   | "send"
   | "address-book"
   | "send-result"
+  | "sendnumber"
   | "statistics";
 
 interface MenuItem {
@@ -38,6 +40,7 @@ const MENU_ICONS: Record<MenuIconId, ReactNode> = {
   send: <SendIcon size={18} />,
   "address-book": <FileTextIcon size={18} />,
   "send-result": <MailIcon size={18} />,
+  sendnumber: <PhoneIcon size={18} />,
   statistics: <PieChartIcon size={18} />,
 };
 
@@ -74,6 +77,12 @@ const MENU_ITEMS: MenuItem[] = [
     label: "발송결과",
     icon: "send-result",
     defaultPath: "/messaging/send-result",
+  },
+  {
+    id: "send-number",
+    label: "발신번호 관리",
+    icon: "sendnumber",
+    defaultPath: "/messaging/sendnumber",
   },
   {
     id: "statistics",
