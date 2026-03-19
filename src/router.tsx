@@ -94,12 +94,16 @@ const router = createBrowserRouter([
                 ),
               },
               {
-                path: "balance",
+                path: "sendnumber",
                 element: withSuspense(
-                  () => import("./pages/messaging/BalancePage.tsx"),
+                  () => import("./pages/messaging/SendNumberPage.tsx"),
                 ),
               },
             ],
+          },
+          {
+            path: "point",
+            element: withSuspense(() => import("./pages/point/PointPage.tsx")),
           },
         ],
       },

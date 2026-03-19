@@ -25,8 +25,8 @@ import {
 } from "@/shared/components/ui/tooltip";
 
 const navigationList = [
-  { text: "발송 관리", path: "/messaging/dashboard" },
-  { text: "잔액 확인", path: "/messaging/balance" },
+  { text: "발송 관리", path: "/messaging" },
+  { text: "잔액 확인", path: "/point" },
 ];
 
 const dropdownMenuList = [
