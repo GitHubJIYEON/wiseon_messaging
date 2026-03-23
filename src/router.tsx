@@ -94,9 +94,9 @@ const router = createBrowserRouter([
                 ),
               },
               {
-                path: "sendnumber",
+                path: "calling-number",
                 element: withSuspense(
-                  () => import("./pages/messaging/SendNumberPage.tsx"),
+                  () => import("./pages/messaging/CallingNumberPage.tsx"),
                 ),
               },
             ],
