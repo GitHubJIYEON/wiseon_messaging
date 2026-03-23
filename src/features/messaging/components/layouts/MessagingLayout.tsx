@@ -24,7 +24,7 @@ type MenuIconId =
   | "send"
   | "address-book"
   | "send-result"
-  | "sendnumber"
+  | "calling-number"
   | "statistics";
 
 interface MenuItem {
@@ -40,7 +40,7 @@ const MENU_ICONS: Record<MenuIconId, ReactNode> = {
   send: <SendIcon size={18} />,
   "address-book": <FileTextIcon size={18} />,
   "send-result": <MailIcon size={18} />,
-  sendnumber: <PhoneIcon size={18} />,
+  "calling-number": <PhoneIcon size={18} />,
   statistics: <PieChartIcon size={18} />,
 };
 
@@ -79,10 +79,10 @@ const MENU_ITEMS: MenuItem[] = [
     defaultPath: "/messaging/send-result",
   },
   {
-    id: "send-number",
+    id: "calling-number",
     label: "발신번호 관리",
-    icon: "sendnumber",
-    defaultPath: "/messaging/sendnumber",
+    icon: "calling-number",
+    defaultPath: "/messaging/calling-number",
   },
   {
     id: "statistics",
