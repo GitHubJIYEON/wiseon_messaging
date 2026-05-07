@@ -1,12 +1,11 @@
 import type { ComponentType } from "react";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import ProtectedMainLayout from "@/shared/components/layout/ProtectedMainLayout.tsx";
+import ServiceLayout from "@/shared/components/layout/ServiceLayout.tsx";
 import App from "./App.tsx";
-import AuthLayout from "./features/components/layouts/AuthLayout.tsx";
-import MessagingLayout from "./features/messaging/components/layouts/MessagingLayout.tsx";
-import AuthPage from "./pages/auth/AuthPage.tsx";
+import AuthLayout from "./features/auth/components/AuthLayout.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
-import ProtectedMainLayout from "./shared/components/layout/ProtectedMainLayout.tsx";
 
 const withSuspense = (importFn: () => Promise<{ default: ComponentType }>) => {
   const LazyComponent = lazy(importFn);
@@ -22,88 +21,92 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
-
-    // auth , error
-    // 시작하기, 대시보드, 메시지 보내기, 주소록, 발송결과, 발신번호
     children: [
       {
         path: "auth",
         element: <AuthLayout />,
         children: [
           {
-            path: "login",
-            element: <AuthPage />,
+            index: true,
+            element: withSuspense(() => import("./pages/auth/AuthPage.tsx")),
           },
         ],
       },
+
       {
         path: "/",
         element: <ProtectedMainLayout />,
         children: [
           {
-            path: "messaging",
-            element: <MessagingLayout />,
+            path: "/",
+            element: <ServiceLayout />,
             children: [
               { index: true, element: <Navigate to="dashboard" replace /> },
               {
                 path: "dashboard",
                 element: withSuspense(
-                  () => import("./pages/messaging/DashboardPage.tsx"),
+                  () => import("./pages/dashboard/DashboardPage.tsx"),
                 ),
               },
               {
-                path: "send/sms",
+                path: "messages/sms",
                 element: withSuspense(
-                  () => import("./pages/messaging/SendSmsPage.tsx"),
+                  () => import("./pages/messages/SmsPage.tsx"),
                 ),
               },
               {
-                path: "send/alimtalk",
+                path: "messages/alimtalk",
                 element: withSuspense(
-                  () => import("./pages/messaging/SendAlimtalkPage.tsx"),
+                  () => import("./pages/messages/AlimtalkPage.tsx"),
+                ),
+              },
+
+              {
+                path: "address-book/new",
+                element: withSuspense(
+                  () => import("./pages/address-book/AddressBookNewPage.tsx"),
                 ),
               },
               {
-                path: "address/register",
+                path: "address-book/:id",
                 element: withSuspense(
-                  () => import("./pages/messaging/AddressRegisterPage.tsx"),
+                  () => import("./pages/address-book/AddressBookPage.tsx"),
                 ),
               },
               {
-                path: "address/list",
+                path: "unsubscribes",
                 element: withSuspense(
-                  () => import("./pages/messaging/AddressListPage.tsx"),
+                  () => import("./pages/unsubscribes/UnsubscribesPage.tsx"),
                 ),
               },
+
               {
-                path: "address/block-list",
+                path: "message-result",
                 element: withSuspense(
-                  () => import("./pages/messaging/AddressBlockListPage.tsx"),
-                ),
-              },
-              {
-                path: "send-result",
-                element: withSuspense(
-                  () => import("./pages/messaging/SendResultPage.tsx"),
+                  () =>
+                    import("./pages/message-results/MessageResultsPage.tsx"),
                 ),
               },
               {
                 path: "statistics",
                 element: withSuspense(
-                  () => import("./pages/messaging/StatisticsPage.tsx"),
+                  () => import("./pages/statistics/StatisticsPage.tsx"),
                 ),
               },
               {
-                path: "calling-number",
+                path: "calling-number/:id",
                 element: withSuspense(
-                  () => import("./pages/messaging/CallingNumberPage.tsx"),
+                  () => import("./pages/calling-number/CallingNumberPage.tsx"),
+                ),
+              },
+              {
+                path: "calling-number/new",
+                element: withSuspense(
+                  () =>
+                    import("./pages/calling-number/CallingNumberNewPage.tsx"),
                 ),
               },
             ],
-          },
-          {
-            path: "point",
-            element: withSuspense(() => import("./pages/point/PointPage.tsx")),
           },
         ],
       },
