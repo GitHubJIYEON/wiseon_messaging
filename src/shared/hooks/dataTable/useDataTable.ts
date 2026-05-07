@@ -13,7 +13,8 @@ const PAGE_KEY = "page";
 const PER_PAGE = 10;
 
 interface UseDataTableProps<TData>
-  extends Omit<
+  extends
+    Omit<
       TableOptions<TData>,
       "state" | "pageCount" | "getCoreRowModel" | "manualPagination"
     >,
@@ -23,8 +24,13 @@ interface UseDataTableProps<TData>
 }
 
 export function useDataTable<TData>(props: UseDataTableProps<TData>) {
-  const { columns, pageCount = -1, getRowId, rowSelection, ...tableProps } =
-    props;
+  const {
+    columns,
+    pageCount = -1,
+    getRowId,
+    rowSelection,
+    ...tableProps
+  } = props;
 
   const queryStateOptions = useMemo<
     Omit<UseQueryStateOptions<string>, "parse">

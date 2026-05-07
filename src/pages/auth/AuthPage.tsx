@@ -1,3 +1,7 @@
 export default function AuthPage() {
-  return <div>AuthPage</div>;
+  return (
+    <section>
+      <h1>AuthPage</h1>
+    </section>
+  );
 }
