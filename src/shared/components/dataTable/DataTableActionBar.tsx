@@ -142,7 +142,7 @@ function DataTableActionBarSelection<TData>({
   return (
     <div className="flex h-7 items-center rounded-md border pr-1 pl-2.5">
       <span className="text-xs whitespace-nowrap">
-        {table.getFilteredSelectedRowModel().rows.length + 1} 개 선택됨
+        {table.getFilteredSelectedRowModel().rows.length} 개 선택됨
       </span>
       <Separator
         orientation="vertical"

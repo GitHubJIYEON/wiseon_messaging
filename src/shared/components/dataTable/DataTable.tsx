@@ -15,6 +15,7 @@ interface DataTableProps<TData> extends ComponentProps<"div"> {
   table: TanstackTable<TData>;
   actionBar?: ReactNode;
   onClickRow?: (row: TData) => void;
+  totalCount?: number;
 }
 
 export function DataTable<TData>({
@@ -23,6 +24,7 @@ export function DataTable<TData>({
   children,
   className,
   onClickRow,
+  totalCount,
   ...props
 }: DataTableProps<TData>) {
   return (
@@ -93,7 +95,11 @@ export function DataTable<TData>({
         </Table>
       </div>
 
-      <DataTablePagination table={table} className="mt-5" />
+      <DataTablePagination
+        table={table}
+        totalCount={totalCount}
+        className="mt-5"
+      />
 
       {actionBar &&
         table.getFilteredSelectedRowModel().rows.length > 0 &&
