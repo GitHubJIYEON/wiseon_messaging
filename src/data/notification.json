@@ -1,0 +1,122 @@
+{
+  "notifications": [
+    {
+      "notificationId": "1777875970162_3177",
+      "userId": "3177",
+      "category": "NOTICE",
+      "title": "[공지] 5월 5일(화) 어린이날 운영 안내 (휴무)",
+      "body": "📅 휴무: 5/5(화) 1:1 문의 답변 및 인증 업무\n🚀 정상: 문자 발송은 중단 없이 정상 가동\n\n문의사항은 5/6(수)부터 순차적으로 신속히 답변해 드리겠습니다.\n이용에 참고 부탁드립니다.\n감사합니다.",
+      "isRead": "N",
+      "createdAt": "2026-05-04T06:26:10.162Z"
+    },
+    {
+      "notificationId": "1777854605864_3177",
+      "userId": "3177",
+      "category": "NOTICE",
+      "title": "[공지] 5월 1일(금) 근로자의 날 운영 안내",
+      "body": "📅 휴무: 5/1(금) 1:1 문의 답변 및 인증 업무\n🚀 정상: 문자 발송은 중단 없이 정상 가동\n\n문의사항은 5/4(월)부터 순차적으로 신속히 답변해 드리겠습니다.\n이용에 참고 부탁드립니다.\n감사합니다.",
+      "isRead": "Y",
+      "createdAt": "2026-05-04T00:30:05.864Z"
+    },
+    {
+      "notificationId": "1776994201940_3177",
+      "userId": "3177",
+      "category": "NOTICE",
+      "title": "[와이즈인컴퍼니] RCS 프리 템플릿 유형 이용 제한 및 통합 프리 템플릿 전환 안내",
+      "body": "안녕하세요. 센드온입니다.\n\n국제 표준에 부합하는 RCS 기업 메시지 서비스 제공을 위해, RBC(RCS Business Center) 정책에 따라 기존 RCS 프리 템플릿 유형이 RCS 통합 프리 템플릿으로 일원화됩니다.\n\n이에 따라 센드온을 통해 RCS 메시지를 이용하시는 고객께서는 아래 내용을 확인하시고 서비스 이용에 참고해 주시기 바랍니다.\n\n\n[주요 변경사항]\n1. 기존 프리 템플릿 유형 이용 종료\n- 종료 예정일: 2026년 7월 31일\n- 해당 일자 이후 기존 프리 템플릿 유형은 더 이상 사용하실 수 없습니다.\n\n2. 신규 브랜드의 프리 템플릿 발급\n- 적용 대상: 2025년 9월 19일 이후 생성된 브랜드\n- 해당 브랜드의 프리 템플릿은 RCS 통합 프리 템플릿 유형으로 발급됩니다.\n\n3. 기존 발급 프리 템플릿 병행 이용 가능\n- 2025년 9월 19일 이전에 발급된 기존 프리 템플릿은 2026년 7월 31일까지 통합 프리 템플릿과 동시 이용이 가능합니다.\n\n\n[고객 확인 사항]\n원활한 서비스 이용을 위해 기존 프리 템플릿을 운영 중이신 고객께서는 2026년 7월 31일 이전에 통합 RCS 프리 템플릿으로의 전환을 진행해 주시기 바랍니다.\n\n기타 문의 사항은 센드온 고객센터로 문의해 주시기 바랍니다.\n감사합니다.",
+      "isRead": "Y",
+      "createdAt": "2026-04-24T01:30:01.940Z"
+    },
+    {
+      "notificationId": "1776844493051_3177",
+      "userId": 3177,
+      "category": "GENERAL",
+      "title": "발송목록-엑셀 파일생성 완료",
+      "body": "발송목록-엑셀 파일이 생성되었습니다.\n\n조회 기간: 25-04-22 ~ 26-04-22\n\n[다운로드 링크](https://bizmsg-statistics-prd-s3-s3bucketstatisticsexportf-vdjj5vodgknb.s3.ap-northeast-2.amazonaws.com/3177/2026/4/22/%EC%84%BC%EB%93%9C%EC%98%A8_%EB%B0%9C%EC%86%A1%EB%AA%A9%EB%A1%9D_2026-04-22_6de6fc30-bc00-44db-a1bc-ad03e740be5f.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATRVJGGS7KNZR3WHG%2F20260422%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20260422T075452Z&X-Amz-Expires=604800&X-Amz-Signature=2e12f1d5cecd9b5665e064d5349e4dbef9eefa2a7cab57c089c6b19dbecf2f8b&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27%25EC%2584%25BC%25EB%2593%259C%25EC%2598%25A8_%25EB%25B0%259C%25EC%2586%25A1%25EB%25AA%25A9%25EB%25A1%259D_2026-04-22_6de6fc30-bc00-44db-a1bc-ad03e740be5f.xlsx&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n다운로드 기간 : 7일 이내 ~ 2026-04-29 07:00:00까지\n\n\n감사합니다. \n\n센드온팀 드림",
+      "isRead": "Y",
+      "createdAt": "2026-04-22T07:54:53.051Z"
+    },
+    {
+      "notificationId": "1776843896185_3177",
+      "userId": 3177,
+      "category": "GENERAL",
+      "title": "발송내역서-PDF 파일생성 완료",
+      "body": "발송내역서-PDF 파일이 생성되었습니다.\n\n조회 기간: 26-01-22 ~ 26-04-22\n\n[다운로드 링크](https://bizmsg-statistics-prd-s3-s3bucketstatisticsexportf-vdjj5vodgknb.s3.ap-northeast-2.amazonaws.com/3177/2026/4/22/%EC%84%BC%EB%93%9C%EC%98%A8_%EB%B0%9C%EC%86%A1%EB%82%B4%EC%97%AD%EC%84%9C_2026-04-22_3488d033-09d9-438c-b3c5-73a9b3bb7c0a.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATRVJGGS7KNZR3WHG%2F20260422%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20260422T074455Z&X-Amz-Expires=604800&X-Amz-Signature=02fc2f7bab7a3278961f2d90c367701094ff20518f24bea428a5db5429564596&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n다운로드 기간 : 7일 이내 ~ 2026-04-29 07:00:00까지\n\n\n감사합니다. \n\n센드온팀 드림",
+      "isRead": "Y",
+      "createdAt": "2026-04-22T07:44:56.185Z"
+    },
+    {
+      "notificationId": "1776843870866_3177",
+      "userId": 3177,
+      "category": "GENERAL",
+      "title": "발송목록-엑셀 파일생성 완료",
+      "body": "발송목록-엑셀 파일이 생성되었습니다.\n\n조회 기간: 25-04-22 ~ 26-04-22\n\n[다운로드 링크](https://bizmsg-statistics-prd-s3-s3bucketstatisticsexportf-vdjj5vodgknb.s3.ap-northeast-2.amazonaws.com/3177/2026/4/22/%EC%84%BC%EB%93%9C%EC%98%A8_%EB%B0%9C%EC%86%A1%EB%AA%A9%EB%A1%9D_2026-04-22_bf42ce5e-8362-4512-9cb9-c5d434516c31.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATRVJGGS7KNZR3WHG%2F20260422%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20260422T074430Z&X-Amz-Expires=604800&X-Amz-Signature=a756155e50b80d8bf401f81ec5940f69e70247e7fb398b29019d117716492879&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27%25EC%2584%25BC%25EB%2593%259C%25EC%2598%25A8_%25EB%25B0%259C%25EC%2586%25A1%25EB%25AA%25A9%25EB%25A1%259D_2026-04-22_bf42ce5e-8362-4512-9cb9-c5d434516c31.xlsx&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n다운로드 기간 : 7일 이내 ~ 2026-04-29 07:00:00까지\n\n\n감사합니다. \n\n센드온팀 드림",
+      "isRead": "Y",
+      "createdAt": "2026-04-22T07:44:30.866Z"
+    },
+    {
+      "notificationId": "1776836592901_3177",
+      "userId": 3177,
+      "category": "GENERAL",
+      "title": "발송목록-엑셀 파일생성 완료",
+      "body": "발송목록-엑셀 파일이 생성되었습니다.\n\n조회 기간: 25-04-22 ~ 26-04-22\n\n[다운로드 링크](https://bizmsg-statistics-prd-s3-s3bucketstatisticsexportf-vdjj5vodgknb.s3.ap-northeast-2.amazonaws.com/3177/2026/4/22/%EC%84%BC%EB%93%9C%EC%98%A8_%EB%B0%9C%EC%86%A1%EB%AA%A9%EB%A1%9D_2026-04-22_99e30872-4067-481b-a018-4bd3046cf2c0.xlsx?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATRVJGGS7KNZR3WHG%2F20260422%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20260422T054312Z&X-Amz-Expires=604800&X-Amz-Signature=fafce54c9fe9927d3e4a321b83d59750e4db7d2c0d4a2d403e989924d0f159ad&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%2A%3DUTF-8%27%27%25EC%2584%25BC%25EB%2593%259C%25EC%2598%25A8_%25EB%25B0%259C%25EC%2586%25A1%25EB%25AA%25A9%25EB%25A1%259D_2026-04-22_99e30872-4067-481b-a018-4bd3046cf2c0.xlsx&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n다운로드 기간 : 7일 이내 ~ 2026-04-29 05:00:00까지\n\n\n감사합니다. \n\n센드온팀 드림",
+      "isRead": "Y",
+      "createdAt": "2026-04-22T05:43:12.901Z"
+    },
+    {
+      "notificationId": "1776157545774_3177",
+      "userId": 3177,
+      "category": "PAYMENT",
+      "title": "거래명세서 파일생성 완료",
+      "body": "거래명세서 파일이 생성되었습니다.\n\n\n[다운로드 링크](https://bizmsg-point-prd-s3-s3bucketpointsexportfilesd64c5-rzrhowqpsy7s.s3.ap-northeast-2.amazonaws.com/3177/2026/4/14/%EC%84%BC%EB%93%9C%EC%98%A8_%EA%B1%B0%EB%9E%98%EB%AA%85%EC%84%B8%EC%84%9C_2026-04-14_0e92507e-bf8d-4656-9826-09ec5c8c410a.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIATRVJGGS7KNZR3WHG%2F20260414%2Fap-northeast-2%2Fs3%2Faws4_request&X-Amz-Date=20260414T090545Z&X-Amz-Expires=604800&X-Amz-Signature=e5030fdf1072fbc51aeb13a5b993ca06b104362ab66ddca0b774bfd7029bdd3a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)\n\n다운로드 기간 : 7일 이내 ~ 2026-04-21 09:00:00까지\n\n\n감사합니다. \n\n센드온팀 드림",
+      "isRead": "Y",
+      "createdAt": "2026-04-14T09:05:45.774Z"
+    },
+    {
+      "notificationId": "1774760487326_3177",
+      "userId": 3177,
+      "category": "PAYMENT",
+      "title": "이벤트 단가 만료 안내",
+      "body": "신규회원 이벤트 단가 적용이 일주일 남았습니다.\n\n감사합니다.\n센드온팀 드림",
+      "isRead": "Y",
+      "createdAt": "2026-03-29T05:01:27.326Z"
+    },
+    {
+      "notificationId": "1774405196321_3177",
+      "userId": 3177,
+      "category": "AUTHENTICATION",
+      "title": "발신번호 등록 실패",
+      "body": "[025585144] 번호의 발신번호 등록이 실패되었습니다.\n실패 사유: 일반 번호 명의가 업체명일 경우 사업자 인증 을 먼저 승인받으신 후 발신번호 등록신청을 해주셔야 합니다. \n\n- 개인 계정의 경우 업체명으로 된 발신번호를 등록하실 수 없습니다. 확인 후 다시 등록해 주세요.",
+      "isRead": "Y",
+      "createdAt": "2026-03-25T02:19:56.321Z"
+    },
+    {
+      "notificationId": "1774405154255_3177",
+      "userId": 3177,
+      "category": "AUTHENTICATION",
+      "title": "발신번호 등록 실패",
+      "body": "[07086761085] 번호의 발신번호 등록이 실패되었습니다.\n실패 사유: 통신서비스 이용증명원의 번호와 등록하시려는 번호가 일치하지 않습니다.\n첨부된 증명원 번호(02-558-5144)이며,  등록하시려는 번호 (070-8676-1085 )가 가입된 통신사에서 해당 번호에 대한 통신서비스 이용증명원을 발급받아 첨부해 주시기 바랍니다.\n - 발급일 1개월 이내, 마스킹 된 정보 없는 서류에 한 해 유효 확인 후 다시 등록해 주세요.",
+      "isRead": "Y",
+      "createdAt": "2026-03-25T02:19:14.255Z"
+    },
+    {
+      "notificationId": "1774403585464_3177",
+      "userId": 3177,
+      "category": "AUTHENTICATION",
+      "title": "발신번호 등록 실패",
+      "body": "[07086761085] 번호의 발신번호 등록이 실패되었습니다.\n실패 사유: 통신서비스 이용증명원의 번호와 등록하시려는 번호가 일치하지 않습니다. 등록하시려는 번호 (070-8676-1085 )가 가입된 통신사에서 해당 번호에 대한 통신서비스 이용증명원을 발급받아 첨부해 주시기 바랍니다. - 발급일 1개월 이내, 마스킹 된 정보 없는 서류에 한 해 유효 확인 후 다시 등록해 주세요.",
+      "isRead": "Y",
+      "createdAt": "2026-03-25T01:53:05.464Z"
+    },
+    {
+      "notificationId": "1772772861309_3177",
+      "userId": 3177,
+      "category": "AUTHENTICATION",
+      "title": "발신번호 등록 완료",
+      "body": "[01085822954] 번호의 발신번호 등록이 승인되었습니다. 지금 바로 메시지를 발송해 보세요!",
+      "isRead": "Y",
+      "createdAt": "2026-03-06T04:54:21.309Z"
+    }
+  ],
+  "unreadCount": 1
+}

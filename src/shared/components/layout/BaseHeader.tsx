@@ -1,4 +1,6 @@
 import {
+  Bell,
+  Check,
   ChevronsUpDown,
   CircleHelpIcon,
   EllipsisVerticalIcon,
@@ -6,6 +8,7 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // import arrowDown from "@/assets/icons/arrowDown.svg";
 import logo from "@/assets/icons/logo.svg";
+import mockNotification from "@/data/notification.json";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -16,18 +19,18 @@ import {
 import {
   Popover,
   PopoverContent,
+  PopoverDescription,
+  PopoverHeader,
+  PopoverTitle,
   PopoverTrigger,
 } from "@/shared/components/ui/popover";
+import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/shared/components/ui/tooltip";
-
-const navigationList = [
-  { text: "발송 관리", path: "/messaging" },
-  { text: "잔액 확인", path: "/point" },
-];
+import { Button } from "../ui/button";
 
 const dropdownMenuList = [
   {
@@ -39,6 +42,8 @@ const dropdownMenuList = [
     path: import.meta.env.VITE_ANALYSIS_URL,
   },
 ];
+
+const navigationList = [{ text: "발송 서비스", path: "/dashboard" }];
 
 export function BaseHeader() {
   return (
@@ -124,7 +129,56 @@ function LogoutButton() {
   };
 
   return (
-    <div className="ml-auto flex h-full items-center gap-2.5 pr-10">
+    <div className="ml-auto flex h-full items-center gap-2.5 pr-4">
+      {/* 알림 팝오버 */}
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" className="cursor-pointer">
+            <Bell size={20} className="text-gray-500" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent align="end" className="h-[620px] w-[420px] p-7">
+          <PopoverHeader>
+            <PopoverTitle className="flex items-center justify-between">
+              <p className="text-lg">알림</p>
+              <Button variant="outline">
+                <Check />
+                모두 읽음
+              </Button>
+            </PopoverTitle>
+            <PopoverDescription className="mt-5">
+              <div>
+                <ScrollArea className="h-[500px]">
+                  <ul>
+                    {mockNotification.notifications.map((notification) => (
+                      <li
+                        key={notification.notificationId}
+                        className="flex max-w-[360px] gap-2 rounded-xs border-b border-gray-400 p-2.5 hover:bg-gray-100"
+                      >
+                        {notification.isRead === "Y" ? (
+                          <div className="mt-1 h-2 w-2 rounded-full bg-blue-600" />
+                        ) : (
+                          <div className="mt-1 h-2 w-2 rounded-full bg-red-600" />
+                        )}
+                        <div className="flex flex-col gap-1">
+                          <p className="text-medium max-w-[320px] truncate text-black">
+                            {notification.title}
+                          </p>
+                          <p className="text-medium max-w-[320px] truncate text-gray-700">
+                            {notification.body}
+                          </p>
+                          <p className="text-sm text-gray-500">___일 전</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </ScrollArea>
+              </div>
+            </PopoverDescription>
+          </PopoverHeader>
+        </PopoverContent>
+      </Popover>
+      {/* 가이드 툴팁 */}
       <Tooltip>
         <TooltipTrigger asChild>
           <a
@@ -137,7 +191,7 @@ function LogoutButton() {
         </TooltipTrigger>
         <TooltipContent>가이드사이트로 이동</TooltipContent>
       </Tooltip>
-
+      {/* 더보기 드롭다운 */}
       <DropdownMenu>
         <DropdownMenuTrigger className="flex cursor-pointer">
           <EllipsisVerticalIcon
