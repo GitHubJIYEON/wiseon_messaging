@@ -1,0 +1,104 @@
+{
+  "list": [
+    {
+      "id": 1001,
+      "requestedAt": "2026-05-11T08:30:00.000Z",
+      "messageBody": "[와이즈온] 안녕하세요. 5월 이벤트 안내 드립니다. 자세한 내용은 링크를 확인해 주세요.",
+      "senderNumber": "07012345678",
+      "recipientCount": 1523,
+      "messageType": "SMS",
+      "contentType": "COMMON",
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1002,
+      "requestedAt": "2026-05-11T09:00:00.000Z",
+      "messageBody": "[와이즈온] 고객님의 주문이 정상적으로 접수되었습니다. 주문번호: A202605110001",
+      "senderNumber": "07012345678",
+      "recipientCount": 348,
+      "messageType": "LMS",
+      "contentType": "AD",
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1003,
+      "requestedAt": "2026-05-12T10:00:00.000Z",
+      "messageBody": "[와이즈온] 내일 오전 10시 예약 발송 테스트 메시지입니다.",
+      "senderNumber": "07087654321",
+      "recipientCount": 200,
+      "messageType": "SMS",
+      "contentType": "COMMON",
+      "status": "RESERVED"
+    },
+    {
+      "id": 1004,
+      "requestedAt": "2026-05-13T14:00:00.000Z",
+      "messageBody": "[와이즈온] 회원님께만 드리는 특별 할인 쿠폰을 발급해 드립니다. 유효기간: 2026.05.31",
+      "senderNumber": "07012345678",
+      "recipientCount": 5000,
+      "messageType": "MMS",
+      "contentType": "AD",
+      "status": "RESERVED"
+    },
+    {
+      "id": 1005,
+      "requestedAt": "2026-05-10T16:20:00.000Z",
+      "messageBody": "[와이즈온] 알림톡 테스트 발송입니다.",
+      "senderNumber": "07012345678",
+      "recipientCount": 120,
+      "messageType": "ALIMTALK",
+      "contentType": "AD",
+      "status": "FAILED"
+    },
+    {
+      "id": 1006,
+      "requestedAt": "2026-05-11T11:45:00.000Z",
+      "messageBody": "[와이즈온] 발송 중인 메시지입니다. 잠시만 기다려 주세요.",
+      "senderNumber": "07087654321",
+      "recipientCount": 9800,
+      "messageType": "SMS",
+      "contentType": "AD",
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1007,
+      "requestedAt": "2026-05-09T13:00:00.000Z",
+      "messageBody": "[와이즈온] 취소된 예약 발송 메시지입니다.",
+      "senderNumber": "07012345678",
+      "recipientCount": 450,
+      "messageType": "LMS",
+      "contentType": "AD",
+      "status": "CANCELED"
+    },
+    {
+      "id": 1008,
+      "requestedAt": "2026-05-08T09:30:00.000Z",
+      "messageBody": "[와이즈온] 친구톡 테스트 발송 메시지 내용입니다.",
+      "senderNumber": "07087654321",
+      "recipientCount": 77,
+      "messageType": "FRIENDTALK",
+      "contentType": "AD",
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1009,
+      "requestedAt": "2026-05-07T17:10:00.000Z",
+      "messageBody": "[와이즈온] 월간 뉴스레터를 발송해 드립니다. 이번 달 주요 업데이트를 확인하세요.",
+      "senderNumber": "07012345678",
+      "recipientCount": 3200,
+      "messageType": "MMS",
+      "contentType": "COMMON",
+      "status": "COMPLETED"
+    },
+    {
+      "id": 1010,
+      "requestedAt": "2026-05-06T10:00:00.000Z",
+      "messageBody": "[와이즈온] 서비스 점검 안내입니다.",
+      "senderNumber": "07012345678",
+      "recipientCount": 88,
+      "messageType": "SMS",
+      "contentType": "COMMON",
+      "status": "FAILED"
+    }
+  ]
+}

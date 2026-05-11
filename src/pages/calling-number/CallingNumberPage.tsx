@@ -1,7 +1,7 @@
 export default function CallingNumberPage() {
   return (
-    <section>
-      <h1>발신 번호 상세</h1>
+    <section className="mx-auto mb-10 flex max-w-6xl flex-col gap-6">
+      <h1 className="mt-8 text-center text-2xl">발신번호 관리</h1>
     </section>
   );
 }

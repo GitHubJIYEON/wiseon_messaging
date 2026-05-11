@@ -4,7 +4,7 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import ProtectedMainLayout from "@/shared/components/layout/ProtectedMainLayout.tsx";
 import ServiceLayout from "@/shared/components/layout/ServiceLayout.tsx";
 import App from "./App.tsx";
-import AuthLayout from "./features/auth/components/AuthLayout.tsx";
+import AuthLayout from "./features/auth/components/layouts/AuthLayout.tsx";
 import ErrorPage from "./pages/ErrorPage.tsx";
 
 const withSuspense = (importFn: () => Promise<{ default: ComponentType }>) => {
@@ -62,13 +62,7 @@ const router = createBrowserRouter([
               },
 
               {
-                path: "address-book/new",
-                element: withSuspense(
-                  () => import("./pages/address-book/AddressBookNewPage.tsx"),
-                ),
-              },
-              {
-                path: "address-book/:id",
+                path: "address-book",
                 element: withSuspense(
                   () => import("./pages/address-book/AddressBookPage.tsx"),
                 ),
@@ -81,10 +75,17 @@ const router = createBrowserRouter([
               },
 
               {
-                path: "message-result",
+                path: "message-results",
                 element: withSuspense(
                   () =>
                     import("./pages/message-results/MessageResultsPage.tsx"),
+                ),
+              },
+              {
+                path: "message-results/:id",
+                element: withSuspense(
+                  () =>
+                    import("./pages/message-results/MessageResultsDetailPage.tsx"),
                 ),
               },
               {

@@ -152,12 +152,12 @@ export default function UnsubscribesDialog({
             </FieldLabel>
             <Textarea
               placeholder={
-                "수신거부할 전화번호를 입력해주세요.\n줄바꿈, 쉼표(,), 세미콜론(;)으로 구분합니다. \n\n예시:\n01012345678\n010-9876-5432\n01011112222, 01033334444"
+                "수신거부 번호를 입력해주세요.\n줄바꿈, 쉼표(,), 세미콜론(;)으로 구분합니다. \n\n예시:\n01012345678\n010-9876-5432\n01011112222, 01033334444"
               }
               className="min-h-[200px] resize-none bg-white"
             />
             <div className="flex items-center justify-between text-[13px] leading-5 text-gray-500">
-              <span>숫자 외 문자(하이픈 등)는 자동 제거</span>
+              <span>숫자 외 문자 (-, /, 공백 등)는 자동 제거</span>
             </div>
           </Field>
         </div>
