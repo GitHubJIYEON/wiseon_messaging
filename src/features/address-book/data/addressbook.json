@@ -1,0 +1,288 @@
+[
+  {
+    "id": 1,
+    "groupName": "아산시 공공기관 기본 주소록",
+    "groupCount": 10,
+    "registeredAt": "2026-01-01T10:00:00.000Z",
+    "members": [
+      {
+        "id": 101,
+        "name": "김민준",
+        "phoneNumber": "01012345678",
+        "email": "minjun.kim@example.com"
+      },
+      {
+        "id": 102,
+        "name": "이서연",
+        "phoneNumber": "01023456789",
+        "email": "seoyeon.lee@example.com"
+      },
+      {
+        "id": 103,
+        "name": "박지훈",
+        "phoneNumber": "01034567890",
+        "email": "jihoon.park@example.com"
+      },
+      {
+        "id": 104,
+        "name": "최수빈",
+        "phoneNumber": "01045678901",
+        "email": "subin.choi@example.com"
+      },
+      {
+        "id": 105,
+        "name": "정태양",
+        "phoneNumber": "01056789012",
+        "email": "taeyang.jung@example.com"
+      },
+      {
+        "id": 106,
+        "name": "강하은",
+        "phoneNumber": "01067890123",
+        "email": "haeun.kang@example.com"
+      },
+      {
+        "id": 107,
+        "name": "윤도현",
+        "phoneNumber": "01078901234",
+        "email": "dohyun.yoon@example.com"
+      },
+      {
+        "id": 108,
+        "name": "임소희",
+        "phoneNumber": "01089012345",
+        "email": "sohee.im@example.com"
+      },
+      {
+        "id": 109,
+        "name": "한준혁",
+        "phoneNumber": "01090123456",
+        "email": "junhyuk.han@example.com"
+      },
+      {
+        "id": 110,
+        "name": "오나린",
+        "phoneNumber": "01011223344",
+        "email": "narin.oh@example.com"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "groupName": "아산시 공공기관 수영장 주소록",
+    "groupCount": 8,
+    "registeredAt": "2026-01-05T09:30:00.000Z",
+    "members": [
+      {
+        "id": 201,
+        "name": "홍길동",
+        "phoneNumber": "01022334455",
+        "email": "gildong.hong@example.com"
+      },
+      {
+        "id": 202,
+        "name": "신유진",
+        "phoneNumber": "01033445566",
+        "email": "yujin.shin@example.com"
+      },
+      {
+        "id": 203,
+        "name": "배현우",
+        "phoneNumber": "01044556677",
+        "email": "hyunwoo.bae@example.com"
+      },
+      {
+        "id": 204,
+        "name": "류아영",
+        "phoneNumber": "01055667788",
+        "email": "ayoung.ryu@example.com"
+      },
+      {
+        "id": 205,
+        "name": "문성민",
+        "phoneNumber": "01066778899",
+        "email": "sungmin.moon@example.com"
+      },
+      {
+        "id": 206,
+        "name": "조은지",
+        "phoneNumber": "01077889900",
+        "email": "eunji.jo@example.com"
+      },
+      {
+        "id": 207,
+        "name": "장재원",
+        "phoneNumber": "01088990011",
+        "email": "jaewon.jang@example.com"
+      },
+      {
+        "id": 208,
+        "name": "송미래",
+        "phoneNumber": "01099001122",
+        "email": "mirae.song@example.com"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "groupName": "온양온천 상가 연합 주소록",
+    "groupCount": 6,
+    "registeredAt": "2026-01-10T14:15:00.000Z",
+    "members": [
+      {
+        "id": 301,
+        "name": "권태경",
+        "phoneNumber": "01010203040",
+        "email": "taekyung.kwon@example.com"
+      },
+      {
+        "id": 302,
+        "name": "남궁지은",
+        "phoneNumber": "01021324354",
+        "email": "jieun.namgung@example.com"
+      },
+      {
+        "id": 303,
+        "name": "여승우",
+        "phoneNumber": "01032435465",
+        "email": "seungwoo.yeo@example.com"
+      },
+      {
+        "id": 304,
+        "name": "서하늘",
+        "phoneNumber": "01043546576",
+        "email": "haneul.seo@example.com"
+      },
+      {
+        "id": 305,
+        "name": "전보람",
+        "phoneNumber": "01054657687",
+        "email": "boram.jeon@example.com"
+      },
+      {
+        "id": 306,
+        "name": "고은채",
+        "phoneNumber": "01065768798",
+        "email": "eunchae.ko@example.com"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "groupName": "둔포면 주민센터 주소록",
+    "groupCount": 12,
+    "registeredAt": "2026-02-03T11:00:00.000Z",
+    "members": [
+      {
+        "id": 401,
+        "name": "안혜림",
+        "phoneNumber": "01011112222",
+        "email": "hyerim.an@example.com"
+      },
+      {
+        "id": 402,
+        "name": "도경수",
+        "phoneNumber": "01022223333",
+        "email": "kyungsoo.do@example.com"
+      },
+      {
+        "id": 403,
+        "name": "명지원",
+        "phoneNumber": "01033334444",
+        "email": "jiwon.myung@example.com"
+      },
+      {
+        "id": 404,
+        "name": "구성환",
+        "phoneNumber": "01044445555",
+        "email": "sunghwan.koo@example.com"
+      },
+      {
+        "id": 405,
+        "name": "방예린",
+        "phoneNumber": "01055556666",
+        "email": "yerin.bang@example.com"
+      },
+      {
+        "id": 406,
+        "name": "노승현",
+        "phoneNumber": "01066667777",
+        "email": "seunghyun.noh@example.com"
+      },
+      {
+        "id": 407,
+        "name": "표지수",
+        "phoneNumber": "01077778888",
+        "email": "jisu.pyo@example.com"
+      },
+      {
+        "id": 408,
+        "name": "하태민",
+        "phoneNumber": "01088889999",
+        "email": "taemin.ha@example.com"
+      },
+      {
+        "id": 409,
+        "name": "가현진",
+        "phoneNumber": "01099990000",
+        "email": "hyunjin.ga@example.com"
+      },
+      {
+        "id": 410,
+        "name": "나도연",
+        "phoneNumber": "01010102030",
+        "email": "doyeon.na@example.com"
+      },
+      {
+        "id": 411,
+        "name": "다은별",
+        "phoneNumber": "01020203040",
+        "email": "eunbyul.da@example.com"
+      },
+      {
+        "id": 412,
+        "name": "라성준",
+        "phoneNumber": "01030304050",
+        "email": "sungjun.ra@example.com"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "groupName": "탕정 스마트밸리 입주사 주소록",
+    "groupCount": 5,
+    "registeredAt": "2026-03-15T16:45:00.000Z",
+    "members": [
+      {
+        "id": 501,
+        "name": "마재현",
+        "phoneNumber": "01040506070",
+        "email": "jaehyun.ma@example.com"
+      },
+      {
+        "id": 502,
+        "name": "바유리",
+        "phoneNumber": "01050607080",
+        "email": "yuri.ba@example.com"
+      },
+      {
+        "id": 503,
+        "name": "사민혁",
+        "phoneNumber": "01060708090",
+        "email": "minhyuk.sa@example.com"
+      },
+      {
+        "id": 504,
+        "name": "아진영",
+        "phoneNumber": "01070809010",
+        "email": "jinyoung.a@example.com"
+      },
+      {
+        "id": 505,
+        "name": "자수현",
+        "phoneNumber": "01080910020",
+        "email": "suhyun.ja@example.com"
+      }
+    ]
+  }
+]

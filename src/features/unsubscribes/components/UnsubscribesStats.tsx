@@ -3,7 +3,7 @@ import unsubscribesData from "@/features/unsubscribes/data/unsubscribes.json";
 import { Button } from "@/shared/components/ui/button";
 import { Field, FieldLabel } from "@/shared/components/ui/field";
 import { Progress } from "@/shared/components/ui/progress";
-import { formatPhoneNumber } from "@/shared/utils/format";
+import { formatPhoneNumber } from "@/shared/utils/formatPhoneNumber";
 
 const MAX_COUNT = 10000;
 
@@ -45,7 +45,7 @@ export default function UnsubscribesStats() {
             {unsubscribesData.blockList.length}
           </span>
           <span className="font-apple-light text-[13px] text-gray-500">
-            / {MAX_COUNT} (최대)
+            / {MAX_COUNT} 개 (최대)
           </span>
         </FieldLabel>
         <Progress value={progressValue} id="progress-upload" />

@@ -34,7 +34,7 @@ const MENU_ICONS = {
   messages: <SendIcon size={18} />,
   "address-book": <FileTextIcon size={18} />,
   unsubscribes: <PhoneOffIcon size={18} />,
-  "message-result": <MailCheck size={18} />,
+  "message-results": <MailCheck size={18} />,
   "calling-number": <PhoneIcon size={18} />,
   statistics: <PieChartIcon size={18} />,
 };
@@ -60,10 +60,9 @@ const MENU_ITEMS: MenuItem[] = [
     id: "address-book",
     label: "주소록",
     icon: "address-book",
-    defaultPath: "/address-book/new",
+    defaultPath: "/address-book",
     subMenus: [
-      { path: "/address-book/new", label: "주소록 등록" },
-      { path: "/address-book/:id", label: "주소록 관리" },
+      { path: "/address-book", label: "주소록 관리" },
       { path: "/unsubscribes", label: "수신거부 관리" },
     ],
   },
@@ -74,10 +73,10 @@ const MENU_ITEMS: MenuItem[] = [
   //   defaultPath: "/unsubscribes",
   // },
   {
-    id: "message-result",
+    id: "message-results",
     label: "발송 결과",
-    icon: "message-result",
-    defaultPath: "/message-result",
+    icon: "message-results",
+    defaultPath: "/message-results",
   },
   {
     id: "calling-number",
@@ -104,7 +103,7 @@ export default function ServiceLayout() {
         <section className="flex min-h-0 flex-1">
           <ServiceSidebar />
 
-          <div className="w-full flex-1 overflow-auto bg-[#fafafa]">
+          <div className="min-h-0 flex-1 overflow-y-auto bg-[#fafafa] px-8">
             <Outlet />
           </div>
         </section>
@@ -151,7 +150,7 @@ function ServiceSidebar() {
   };
 
   return (
-    <aside className="flex w-[300px] flex-col gap-1 border-r border-gray-400 p-5">
+    <aside className="flex w-[300px] flex-col gap-1 overflow-y-auto border-r border-gray-400 p-5">
       {MENU_ITEMS.map((item) =>
         item.subMenus ? (
           <MenuSection

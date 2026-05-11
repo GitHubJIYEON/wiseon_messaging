@@ -1,12 +1,14 @@
 import type { ColumnDef } from "@tanstack/react-table";
 import { Badge } from "@/shared/components/ui/badge";
 import { Checkbox } from "@/shared/components/ui/checkbox";
-import { formatPhoneNumber } from "@/shared/utils/format";
+import { formatDateTime } from "@/shared/utils/formatDate";
+import { formatPhoneNumber } from "@/shared/utils/formatPhoneNumber";
 import type { BlockItem } from "./types";
 
 export const unsubscribesColumns: ColumnDef<BlockItem>[] = [
   {
     id: "select",
+    size: 50,
     header: ({ table }) => (
       <Checkbox
         checked={table.getIsAllPageRowsSelected()}
@@ -34,7 +36,9 @@ export const unsubscribesColumns: ColumnDef<BlockItem>[] = [
   {
     header: "등록일시",
     accessorKey: "createdAt",
-    cell: ({ row }) => <div>{row.original.createdAt}</div>,
+    cell: ({ row }) => (
+      <div>{formatDateTime(new Date(row.original.createdAt))}</div>
+    ),
   },
   {
     header: "유입 경로",
