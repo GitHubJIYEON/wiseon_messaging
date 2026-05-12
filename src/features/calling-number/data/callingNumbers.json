@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "phoneNumber": "0212345678",
+    "name": "고객센터 대표번호",
+    "registeredAt": "2025-01-10T09:00:00.000Z",
+    "certExpiredAt": "2026-01-10T09:00:00.000Z",
+    "status": "정상",
+    "usageEnabled": true
+  },
+  {
+    "id": 2,
+    "phoneNumber": "0312345678",
+    "name": "마케팅팀 발신번호",
+    "registeredAt": "2025-03-15T10:30:00.000Z",
+    "certExpiredAt": "2026-03-15T10:30:00.000Z",
+    "status": "정상",
+    "usageEnabled": false
+  },
+  {
+    "id": 3,
+    "phoneNumber": "01012345678",
+    "name": "영업팀 담당자",
+    "registeredAt": "2025-06-20T14:00:00.000Z",
+    "certExpiredAt": "2026-06-20T14:00:00.000Z",
+    "status": "정상",
+    "usageEnabled": true
+  },
+  {
+    "id": 4,
+    "phoneNumber": "0512341234",
+    "name": "부산 고객지원",
+    "registeredAt": "2025-09-01T11:00:00.000Z",
+    "certExpiredAt": "2026-09-01T11:00:00.000Z",
+    "status": "정상",
+    "usageEnabled": true
+  },
+  {
+    "id": 5,
+    "phoneNumber": "0212349999",
+    "name": "서울 콜센터",
+    "registeredAt": "2025-11-05T09:30:00.000Z",
+    "certExpiredAt": "2026-11-05T09:30:00.000Z",
+    "status": "정상",
+    "usageEnabled": false
+  },
+  {
+    "id": 6,
+    "phoneNumber": "01098765432",
+    "name": "신규 발신번호",
+    "registeredAt": "2026-04-28T10:00:00.000Z",
+    "certExpiredAt": "2027-04-28T10:00:00.000Z",
+    "status": "검수중",
+    "usageEnabled": false
+  },
+  {
+    "id": 7,
+    "phoneNumber": "0221001234",
+    "name": "만료된 대표번호",
+    "registeredAt": "2024-01-10T09:00:00.000Z",
+    "certExpiredAt": "2025-01-10T09:00:00.000Z",
+    "status": "만료",
+    "usageEnabled": false
+  },
+  {
+    "id": 8,
+    "phoneNumber": "01055556666",
+    "name": "반려 처리번호",
+    "registeredAt": "2026-03-20T13:00:00.000Z",
+    "certExpiredAt": "2027-03-20T13:00:00.000Z",
+    "status": "반려",
+    "usageEnabled": false
+  }
+]

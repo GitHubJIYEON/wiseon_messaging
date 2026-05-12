@@ -81,12 +81,12 @@
   --color-point-gray-700: oklch(0.6078 0.0241 282.81); /* #808191 */
 
   /* Primary colors - 500은 그냥 primary써도 상관없음. */
-  --color-primary-50: oklch(0.962 0.02 255); /* #EBF3FE */
-  --color-primary-100: oklch(0.63 0.145 255); /* #4D8FE8 */
-  --color-primary-200: oklch(0.84 0.08 255); /* #A8CCFA */
-  --color-primary-500: var(--primary); /* #075AD3 */
-  --color-primary-600: oklch(0.42 0.18 258); /* #064BBF */
-  --color-primary-800: oklch(0.28 0.11 258); /* #032D6B */
+  --color-primary-50: oklch(0.9556 0.0228 291.37); /* #F8F6F2 */
+  --color-primary-100: oklch(0.6081 0.1824 272.13); /* #5F75EE */
+  --color-primary-200: oklch(0.8568 0.0761 290.53) /* #cfc8ff */;
+  --color-primary-500: var(--primary) /* #6C5DD3 */;
+  --color-primary-600: oklch(0.5031 0.1964 282.53) /* #5a49ce */;
+  --color-primary-800: oklch(0.3406 0.1087 284.63) /* #342c6d */;
 
   /* Secondary colors */
   --color-secondary-100: oklch(0.6511 0.1872 258.55); /* #3F8CFF */
@@ -113,7 +113,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.4726 0.1893 258.07); /* #075AD3 */
+  --primary: oklch(0.5546 0.1749 284.95); /* #6c5dd3 */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -124,7 +124,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.4726 0.1893 258.07); /* #075AD3 */
+  --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -147,8 +147,8 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.58 0.17 255); /* #3B82D6 - 다크모드에서 밝게 조정 */
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
@@ -166,7 +166,7 @@
   --chart-5: oklch(0.645 0.246 16.439);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.58 0.17 255);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
