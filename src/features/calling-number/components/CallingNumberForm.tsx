@@ -116,8 +116,8 @@ export default function CallingNumberForm() {
       </article>
 
       {/* 하단 제출 */}
-      <div className="sticky bottom-0 z-10 flex items-center justify-between rounded-xl border border-gray-200 bg-white px-8 py-5 shadow-lg">
-        <p className="font-apple-light text-[13px] text-gray-600">
+      <div className="sticky bottom-0 z-10 flex items-center justify-between rounded-xl bg-white px-8 py-5 shadow-md">
+        <p className="text-sm text-gray-600">
           제출 후 검수까지 영업일 기준 1~3일 소요됩니다.
         </p>
         <div className="flex items-center gap-3">
