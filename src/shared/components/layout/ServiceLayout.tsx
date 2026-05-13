@@ -53,7 +53,7 @@ const MENU_ITEMS: MenuItem[] = [
     defaultPath: "/messages/sms",
     subMenus: [
       { path: "/messages/sms", label: "문자 보내기" },
-      { path: "/messages/alimtalk", label: "알림톡 보내기" },
+      // { path: "/messages/alimtalk", label: "알림톡 보내기" },
     ],
   },
   {

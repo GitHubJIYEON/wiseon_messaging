@@ -1,0 +1,50 @@
+[
+  {
+    "value": "new",
+    "label": "신규 가입 고객",
+    "count": 340,
+    "variables": [
+      { "key": "name", "label": "이름", "token": "#{이름}" },
+      { "key": "signupDate", "label": "가입일", "token": "#{가입일}" },
+      { "key": "coupon", "label": "쿠폰명", "token": "#{쿠폰명}" },
+      { "key": "surveyLink", "label": "설문 링크", "token": "#{설문 링크}" },
+      { "key": "surveyDeadline", "label": "설문 마감일", "token": "#{설문 마감일}" },
+      { "key": "surveyResult", "label": "설문 결과", "token": "#{설문 결과}" }
+    ],
+    "previewRecipientName": "박서준",
+    "previewRecipient": {
+      "name": "박서준",
+      "signupDate": "2026-03-14",
+      "coupon": "웰컴 10% 할인쿠폰",
+      "surveyLink": "https://www.google.com",
+      "surveyDeadline": "2026-03-22",
+      "surveyResult": "https://www.google.com"
+    }
+  },
+  {
+    "value": "event",
+    "label": "이벤트 신청자",
+    "count": 892,
+    "variables": [
+      { "key": "name", "label": "이름", "token": "#{이름}" },
+      { "key": "eventName", "label": "이벤트명", "token": "#{이벤트명}" },
+      { "key": "reservationDate", "label": "예약일", "token": "#{예약일}" }
+    ],
+    "previewRecipientName": "최유진",
+    "previewRecipient": {
+      "name": "최유진",
+      "eventName": "봄 프로모션 설명회",
+      "reservationDate": "2026-03-22"
+    }
+  },
+  {
+    "value": "no value",
+    "label": "변수 없는 주소록",
+    "count": 892,
+    "variables": [],
+    "previewRecipientName": "이름",
+    "previewRecipient": {
+      "name": "이름"
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "value": "sms",
+    "label": "SMS",
+    "description": "90byte 이하 단문 발송",
+    "pricing": "50건 이하 무료, 초과 시 9.9원/건",
+    "byteLimit": 90,
+    "freeLimit": 50,
+    "unitPrice": 9.9
+  },
+  {
+    "value": "lms",
+    "label": "LMS",
+    "description": "2000byte 이하 장문 발송",
+    "pricing": "10건 이하 무료, 초과 시 33원/건",
+    "byteLimit": 2000,
+    "freeLimit": 10,
+    "unitPrice": 33
+  }
+]
