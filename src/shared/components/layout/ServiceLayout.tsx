@@ -53,7 +53,7 @@ const MENU_ITEMS: MenuItem[] = [
     defaultPath: "/messages/sms",
     subMenus: [
       { path: "/messages/sms", label: "문자 보내기" },
-      { path: "/messages/alimtalk", label: "알림톡 보내기" },
+      // { path: "/messages/alimtalk", label: "알림톡 보내기" },
     ],
   },
   {
@@ -85,7 +85,7 @@ const MENU_ITEMS: MenuItem[] = [
     defaultPath: "/calling-number",
     subMenus: [
       { path: `/calling-number/:id`, label: "발신 번호 관리" },
-      { path: "/calling-number/new", label: "발신 번호 등록" },
+      { path: "/calling-number/new", label: "발신 번호 신청" },
     ],
   },
   {

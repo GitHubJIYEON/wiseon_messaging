@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "phoneNumber": "0212345678",
+    "name": "고객센터 대표번호",
+    "isDefault": true
+  },
+  {
+    "id": 2,
+    "phoneNumber": "0288881234",
+    "name": "공공기관 번호",
+    "isDefault": false
+  },
+  {
+    "id": 3,
+    "phoneNumber": "0211111111",
+    "name": "테스트 신청 번호",
+    "isDefault": false
+  },
+  {
+    "id": 4,
+    "phoneNumber": "0211111112",
+    "name": "테스트 신청 번호",
+    "isDefault": false
+  },
+  {
+    "id": 5,
+    "phoneNumber": "0211111113",
+    "name": "테스트 신청 번호",
+    "isDefault": false
+  },
+  {
+    "id": 6,
+    "phoneNumber": "0211111114",
+    "name": "테스트 신청 번호",
+    "isDefault": false
+  }
+]
