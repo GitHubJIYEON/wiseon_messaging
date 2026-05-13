@@ -502,9 +502,6 @@ export default function SmsPage() {
               />
             </div>
             <div className="mt-6 space-y-3">
-              <Button variant="outline" className="h-11 w-full bg-white">
-                테스트 발송
-              </Button>
               <Button className="h-12 w-full text-[15px]" onClick={handleSend}>
                 발송하기
               </Button>
