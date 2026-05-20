@@ -2,7 +2,7 @@ import { useState } from "react";
 import { RefreshCw, Search } from "lucide-react";
 import excelIcon from "@/assets/icons/excel_icon.png";
 import { Button } from "@/shared/components/ui/button";
-import { Field, FieldLabel } from "@/shared/components/ui/field";
+import { Field } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import {
   Select,
