@@ -26,7 +26,7 @@ export default function CallingNumberGuide({
 }) {
   return (
     <div className="flex flex-col gap-7">
-      <Card className="border-none">
+      <Card className="border-none shadow-xs">
         <CardHeader>
           <CardTitle>발신번호 신청 안내</CardTitle>
           <CardDescription>
@@ -80,7 +80,7 @@ export default function CallingNumberGuide({
         </CardContent>
       </Card>
 
-      <Card className="border-none">
+      <Card className="border-none shadow-xs">
         <CardHeader>
           <CardTitle>통신서비스 이용증명원이란?</CardTitle>
           <CardDescription>
@@ -116,7 +116,7 @@ export default function CallingNumberGuide({
         </CardContent>
       </Card>
 
-      <Card className="border-none">
+      <Card className="border-none shadow-xs">
         <CardHeader>
           <CardTitle>문의</CardTitle>
           <CardDescription>

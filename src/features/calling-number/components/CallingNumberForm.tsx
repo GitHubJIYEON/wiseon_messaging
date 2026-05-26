@@ -7,7 +7,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/shared/components/ui/accordion";
-import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import {
   Field,
@@ -16,6 +15,7 @@ import {
 } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import { Label } from "@/shared/components/ui/label";
+import { StepHeader } from "@/shared/components/ui/step-header";
 import { Textarea } from "@/shared/components/ui/textarea";
 
 export default function CallingNumberForm() {
@@ -35,37 +35,40 @@ export default function CallingNumberForm() {
     <div className="grid gap-7">
       {/* 1. 이용동의 */}
       <article className="rounded-md bg-white p-7">
-        <ArticleHeader number={1} title="이용동의" required={true} />
+        <StepHeader number={1} title="이용동의" required />
         <div className="mt-4 rounded-md border p-4">
           {/* 아코디언 컴포넌트  */}
           <AgreementAccordion />
         </div>
       </article>
       {/* 2. 신청자 정보 */}
-      <article className="rounded-md bg-white p-7">
-        <ArticleHeader
-          number={2}
-          title="발신 번호 이름 (기관명 또는 법인명)"
-          required={true}
-        />
-        <div className="mt-4">
-          <Label className="mb-2 hidden">기관명 (법인명)</Label>
-          <Input placeholder="기관명 또는  법인명 입력" />
-        </div>
-      </article>
-      {/* 3. 발신번호 입력 */}
-      <article className="rounded-md bg-white p-7">
-        <ArticleHeader number={3} title="발신번호 입력" required={true} />
-        <div className="mt-4">
+      <div className="flex w-full flex-row gap-7">
+        <article className="w-1/2 rounded-md bg-white p-7">
+          <StepHeader
+            number={2}
+            title="발신 번호 이름 (기관명 또는 법인명)"
+            required
+          />
           <div className="mt-4">
-            <Label className="mb-2 hidden">발신번호</Label>
-            <Input placeholder="발신번호" />
+            <Label className="mb-2 hidden">기관명 (법인명)</Label>
+            <Input placeholder="기관명 또는  법인명 입력" />
           </div>
-        </div>
-      </article>
+        </article>
+
+        {/* 3. 발신번호 입력 */}
+        <article className="w-1/2 rounded-md bg-white p-7">
+          <StepHeader number={3} title="발신번호 입력" required />
+          <div className="mt-4">
+            <div className="mt-4">
+              <Label className="mb-2 hidden">발신번호</Label>
+              <Input placeholder="발신번호" />
+            </div>
+          </div>
+        </article>
+      </div>
       {/* 4. 첨부 서류 */}
       <article className="rounded-md bg-white p-7">
-        <ArticleHeader number={4} title="첨부 서류" required={true} />
+        <StepHeader number={4} title="첨부 서류" required />
         <div className="mt-4 rounded-md border p-4">
           <Field>
             <FieldLabel>사업자 등록증</FieldLabel>
@@ -99,7 +102,7 @@ export default function CallingNumberForm() {
       </article>
       {/* 5. 요청 내용 */}
       <article className="rounded-md bg-white p-7">
-        <ArticleHeader number={5} title="요청 내용" required={false} />
+        <StepHeader number={5} title="요청 내용" />
         <div className="mt-4">
           <Textarea
             placeholder="사용 목적, 발신 대상, 추가 확인이 필요한 사항을 입력"
@@ -125,9 +128,9 @@ export default function CallingNumberForm() {
             type="button"
             variant="outline"
             className="h-[44px] min-w-[100px]"
-            onClick={() => void navigate("/calling-number/new")}
+            onClick={() => void navigate("/calling-number/list")}
           >
-            이전
+            취소
           </Button>
           <Button
             type="button"
@@ -139,34 +142,6 @@ export default function CallingNumberForm() {
           </Button>
         </div>
       </div>
-    </div>
-  );
-}
-
-function ArticleHeader({
-  number,
-  title,
-  required,
-}: {
-  number: number;
-  title: string;
-  required: boolean;
-}) {
-  return (
-    <div className="flex flex-row items-center gap-2">
-      <span className="bg-primary-500 flex size-6 items-end justify-center rounded-full text-[13px] font-bold text-white">
-        {number}
-      </span>
-      <h4>{title}</h4>
-      {required ? (
-        <Badge className="ml-auto" variant="red">
-          필수
-        </Badge>
-      ) : (
-        <Badge className="ml-auto" variant="gray">
-          선택
-        </Badge>
-      )}
     </div>
   );
 }

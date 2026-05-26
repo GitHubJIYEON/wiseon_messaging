@@ -63,7 +63,7 @@ export default function AddressBookTableSearch({
       {/* 버튼 */}
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
-          <Button type="button" variant="dark">
+          <Button type="button" variant="default">
             <PlusIcon className="size-4" />
             그룹 추가
           </Button>

@@ -1,0 +1,232 @@
+{
+  "details": [
+    {
+      "id": 1001,
+      "completedAt": "2026-05-11T08:35:00.000Z",
+      "successCount": 1498,
+      "failedCount": 25,
+      "pendingCount": 0,
+      "attachments": [],
+      "recipients": [
+        {
+          "id": 1,
+          "phoneNumber": "01012345678",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:02.000Z"
+        },
+        {
+          "id": 2,
+          "phoneNumber": "01023456789",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:05.000Z"
+        },
+        {
+          "id": 3,
+          "phoneNumber": "01034567890",
+          "status": "FAILED",
+          "failureReason": "NO_SUBSCRIBER",
+          "completedAt": "2026-05-11T08:31:08.000Z"
+        },
+        {
+          "id": 4,
+          "phoneNumber": "01045678901",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:11.000Z"
+        },
+        {
+          "id": 5,
+          "phoneNumber": "01056789012",
+          "status": "FAILED",
+          "failureReason": "INVALID_NUMBER",
+          "completedAt": "2026-05-11T08:31:14.000Z"
+        },
+        {
+          "id": 6,
+          "phoneNumber": "01067890123",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:17.000Z"
+        },
+        {
+          "id": 7,
+          "phoneNumber": "01078901234",
+          "status": "FAILED",
+          "failureReason": "UNSUBSCRIBED",
+          "completedAt": "2026-05-11T08:31:20.000Z"
+        },
+        {
+          "id": 8,
+          "phoneNumber": "01089012345",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:23.000Z"
+        },
+        {
+          "id": 9,
+          "phoneNumber": "01090123456",
+          "status": "FAILED",
+          "failureReason": "CARRIER_ERROR",
+          "completedAt": "2026-05-11T08:31:26.000Z"
+        },
+        {
+          "id": 10,
+          "phoneNumber": "01011223344",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:29.000Z"
+        },
+        {
+          "id": 11,
+          "phoneNumber": "01022334455",
+          "status": "FAILED",
+          "failureReason": "OTHER",
+          "completedAt": "2026-05-11T08:31:32.000Z"
+        },
+        {
+          "id": 12,
+          "phoneNumber": "01033445566",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T08:31:35.000Z"
+        }
+      ]
+    },
+    {
+      "id": 1002,
+      "completedAt": "2026-05-11T09:05:00.000Z",
+      "title": "[와이즈온] 주문 접수 안내",
+      "successCount": 340,
+      "failedCount": 8,
+      "pendingCount": 0,
+      "attachments": [],
+      "recipients": [
+        {
+          "id": 1,
+          "phoneNumber": "01011112222",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T09:01:02.000Z"
+        },
+        {
+          "id": 2,
+          "phoneNumber": "01033334444",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T09:01:05.000Z"
+        },
+        {
+          "id": 3,
+          "phoneNumber": "01055556666",
+          "status": "FAILED",
+          "failureReason": "UNSUBSCRIBED",
+          "completedAt": "2026-05-11T09:01:08.000Z"
+        },
+        {
+          "id": 4,
+          "phoneNumber": "01077778888",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-11T09:01:11.000Z"
+        },
+        {
+          "id": 5,
+          "phoneNumber": "01099990000",
+          "status": "FAILED",
+          "failureReason": "NO_SUBSCRIBER",
+          "completedAt": "2026-05-11T09:01:14.000Z"
+        }
+      ]
+    },
+    {
+      "id": 1005,
+      "completedAt": "2026-05-10T16:25:00.000Z",
+      "successCount": 0,
+      "failedCount": 120,
+      "pendingCount": 0,
+      "attachments": [],
+      "recipients": [
+        {
+          "id": 1,
+          "phoneNumber": "01012121212",
+          "status": "FAILED",
+          "failureReason": "CARRIER_ERROR",
+          "completedAt": "2026-05-10T16:21:02.000Z"
+        },
+        {
+          "id": 2,
+          "phoneNumber": "01034343434",
+          "status": "FAILED",
+          "failureReason": "INVALID_NUMBER",
+          "completedAt": "2026-05-10T16:21:05.000Z"
+        },
+        {
+          "id": 3,
+          "phoneNumber": "01056565656",
+          "status": "FAILED",
+          "failureReason": "NO_SUBSCRIBER",
+          "completedAt": "2026-05-10T16:21:08.000Z"
+        }
+      ]
+    },
+    {
+      "id": 1009,
+      "completedAt": "2026-05-07T17:15:00.000Z",
+      "title": "[와이즈온] 5월 뉴스레터",
+      "successCount": 3180,
+      "failedCount": 20,
+      "pendingCount": 0,
+      "attachments": [
+        {
+          "id": 1,
+          "name": "newsletter_may.jpg",
+          "url": "https://placehold.co/320x240/png?text=Newsletter",
+          "type": "IMAGE"
+        }
+      ],
+      "recipients": [
+        {
+          "id": 1,
+          "phoneNumber": "01010001000",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-07T17:11:02.000Z"
+        },
+        {
+          "id": 2,
+          "phoneNumber": "01020002000",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-07T17:11:05.000Z"
+        },
+        {
+          "id": 3,
+          "phoneNumber": "01030003000",
+          "status": "FAILED",
+          "failureReason": "UNSUBSCRIBED",
+          "completedAt": "2026-05-07T17:11:08.000Z"
+        }
+      ]
+    },
+    {
+      "id": 1010,
+      "completedAt": "2026-05-06T10:05:00.000Z",
+      "successCount": 72,
+      "failedCount": 16,
+      "pendingCount": 0,
+      "attachments": [],
+      "recipients": [
+        {
+          "id": 1,
+          "phoneNumber": "01044445555",
+          "status": "SUCCESS",
+          "completedAt": "2026-05-06T10:01:02.000Z"
+        },
+        {
+          "id": 2,
+          "phoneNumber": "01066667777",
+          "status": "FAILED",
+          "failureReason": "INVALID_NUMBER",
+          "completedAt": "2026-05-06T10:01:05.000Z"
+        },
+        {
+          "id": 3,
+          "phoneNumber": "01088889999",
+          "status": "FAILED",
+          "failureReason": "NO_SUBSCRIBER",
+          "completedAt": "2026-05-06T10:01:08.000Z"
+        }
+      ]
+    }
+  ]
+}

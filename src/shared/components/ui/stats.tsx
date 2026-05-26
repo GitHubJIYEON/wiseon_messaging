@@ -12,9 +12,9 @@ function Stats({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 interface StatsSummaryHeaderProps {
-  icon: React.ReactNode;
-  title: string;
-  value: React.ReactNode;
+  icon?: React.ReactNode;
+  title?: string;
+  value?: React.ReactNode;
   description?: React.ReactNode;
   action?: React.ReactNode;
   className?: string;
@@ -32,17 +32,23 @@ function StatsSummaryHeader({
     <>
       <div className={cn("flex items-center justify-between", className)}>
         <div className="flex items-center gap-6">
-          <div className="bg-primary-50 text-primary-500 flex h-12 w-12 items-center justify-center rounded-full [&>svg]:size-5">
-            {icon}
-          </div>
+          {icon && (
+            <div className="bg-primary-50 text-primary-500 flex h-12 w-12 items-center justify-center rounded-full [&>svg]:size-5">
+              {icon}
+            </div>
+          )}
           <div className="flex flex-col gap-1">
-            <h2 className="font-apple-medium text-[16px] text-gray-600">
-              {title}
-            </h2>
+            {title && (
+              <h2 className="font-apple-medium text-[16px] text-gray-600">
+                {title}
+              </h2>
+            )}
             <div className="flex flex-row items-baseline gap-2">
-              <span className="font-apple-bold text-[22px] leading-tight tracking-wide text-gray-900">
-                {value}
-              </span>
+              {value && (
+                <span className="font-apple-bold text-[22px] leading-tight tracking-wide text-gray-900">
+                  {value}
+                </span>
+              )}
               {description && (
                 <span className="font-apple-light text-[14px] text-gray-500">
                   {description}
