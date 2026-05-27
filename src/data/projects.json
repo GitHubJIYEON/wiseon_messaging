@@ -1,0 +1,72 @@
+{
+  "projectId": "f87904b0-b7d0-488a-ab54-1809dfa7bdcb",
+  "projectName": "wiseon_dev_messaging",
+  "projectDesc": "260513 수정 테스트",
+  "status": "ACTIVE",
+  "useSms": true,
+  "useKkoBizMsg": false,
+  "isProtected": false,
+  "smsService": {
+    "serviceNo": 30811,
+    "serviceId": "ncp-gov:sms:kr:1162422533:wiseon_dev_messaging",
+    "serviceName": "wiseon_dev_messaging",
+    "createTime": 1778656116797,
+    "updateTime": 1778656116796,
+    "useBlockService": false,
+    "serviceStatus": "ACTIVE",
+    "callingNumberCount": 0
+  },
+  "kkoBizMsgService": {
+    "serviceId": "ncp-gov:kkobizmsg:kr:1162451119:wiseon_dev_messaging",
+    "serviceName": "wiseon_dev_messaging",
+    "createTime": 1778656116800,
+    "updateTime": 1778656116799,
+    "serviceStatus": "ACTIVE"
+  },
+  "createTime": 1778656116795,
+  "updateTime": 1779158678577,
+  "smsQuota": {
+    "localSmsQuotaUsage": {
+      "quotaUsageType": "SMS",
+      "dailyQuota": 100000,
+      "dailyQuotaUsage": 0,
+      "dailyQuotaUsageRate": 0.0,
+      "monthlyQuota": 500000,
+      "monthlyQuotaUsage": 0,
+      "monthlyQuotaUsageRate": 0.0,
+      "quotaGrade": {
+        "gradeCode": "DEFAULT",
+        "gradeName": "기본",
+        "dailyLimit": 100000,
+        "monthlyLimit": 500000
+      }
+    },
+    "globalSmsQuotaUsage": {
+      "quotaUsageType": "GMS",
+      "dailyQuota": 500,
+      "dailyQuotaUsage": 0,
+      "dailyQuotaUsageRate": 0.0,
+      "monthlyQuota": 500,
+      "monthlyQuotaUsage": 0,
+      "monthlyQuotaUsageRate": 0.0,
+      "quotaGrade": {
+        "gradeCode": "DEFAULT",
+        "gradeName": "기본",
+        "dailyLimit": 500,
+        "monthlyLimit": 500
+      }
+    },
+    "localSmsQuotaGrade": {
+      "gradeCode": "DEFAULT",
+      "gradeName": "기본",
+      "dailyLimit": 100000,
+      "monthlyLimit": 500000
+    },
+    "globalSmsQuotaGrade": {
+      "gradeCode": "DEFAULT",
+      "gradeName": "기본",
+      "dailyLimit": 500,
+      "monthlyLimit": 500
+    }
+  }
+}

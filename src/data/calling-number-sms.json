@@ -1,0 +1,9 @@
+{
+  "serviceNo": 30722,
+  "serviceId": "ncp-gov:sms:kr:1162413571:wiseon_messaging",
+  "serviceName": "wiseon_messaging",
+  "createTime": 1773622529258,
+  "updateTime": 1773622529256,
+  "useBlockService": true,
+  "serviceStatus": "ACTIVE"
+}
