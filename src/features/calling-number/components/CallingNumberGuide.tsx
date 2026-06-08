@@ -7,7 +7,6 @@ import {
   Mail,
   PencilLine,
   Phone,
-  PhoneCall,
 } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import {
@@ -20,13 +19,13 @@ import {
 } from "@/shared/components/ui/card";
 
 export default function CallingNumberGuide({
-  setStep,
+  onStart,
 }: {
-  setStep: (step: number) => void;
+  onStart: () => void;
 }) {
   return (
     <div className="flex flex-col gap-7">
-      <Card className="border-none shadow-xs">
+      <Card className="rounded-md border-none px-2 py-6 shadow-sm">
         <CardHeader>
           <CardTitle>발신번호 신청 안내</CardTitle>
           <CardDescription>
@@ -38,7 +37,7 @@ export default function CallingNumberGuide({
         </CardHeader>
         <CardContent>
           <p className="text-md">신청 서류</p>
-          <ul className="grid gap-2 py-2 text-sm">
+          <ul className="grid gap-2 text-sm">
             <li className="flex items-center gap-2">
               <ChevronRightIcon className="text-muted-foreground mt-0.5 size-4 shrink-0" />
               <span>위임장 </span>
@@ -56,10 +55,9 @@ export default function CallingNumberGuide({
               <ChevronRightIcon className="text-muted-foreground mt-0.5 size-4 shrink-0" />
               <span>통신서비스 이용증명원</span>{" "}
               <span> (신청일 기준 1개월 이내 발급)</span>
-              <Button variant="outline" size="xs">
-                {" "}
-                발급 방법 가이드{" "}
-                <ExternalLinkIcon className="text-muted-foreground size-3" />
+              <Button variant="link" size="xs" className="text-sm underline">
+                발급 방법 가이드
+                <ExternalLinkIcon className="text-muted-foreground inline-block size-3.5" />
               </Button>
             </li>
             <li className="flex items-center gap-2">
@@ -80,7 +78,7 @@ export default function CallingNumberGuide({
         </CardContent>
       </Card>
 
-      <Card className="border-none shadow-xs">
+      <Card className="rounded-md border-none px-2 py-6 shadow-sm">
         <CardHeader>
           <CardTitle>통신서비스 이용증명원이란?</CardTitle>
           <CardDescription>
@@ -116,7 +114,7 @@ export default function CallingNumberGuide({
         </CardContent>
       </Card>
 
-      <Card className="border-none shadow-xs">
+      <Card className="rounded-md border-none px-2 py-6 shadow-sm">
         <CardHeader>
           <CardTitle>문의</CardTitle>
           <CardDescription>
@@ -148,7 +146,7 @@ export default function CallingNumberGuide({
       </Card>
 
       <CardFooter className="justify-center">
-        <Button variant="dark" onClick={() => setStep(2)}>
+        <Button variant="dark" onClick={onStart}>
           시작하기
         </Button>
       </CardFooter>

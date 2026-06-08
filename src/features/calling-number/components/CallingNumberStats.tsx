@@ -24,7 +24,7 @@ export default function CallingNumberStats() {
 
   return (
     <Stats>
-      {availableCount !== 30 ? (
+      {availableCount < maxCount ? (
         <StatsSummaryHeader
           icon={<PhoneIcon />}
           title="기본 발신번호"
