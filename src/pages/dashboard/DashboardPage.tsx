@@ -94,6 +94,7 @@ import {
   PopoverTrigger,
 } from "@/shared/components/ui/popover";
 import { Progress } from "@/shared/components/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@/shared/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -618,11 +619,55 @@ function PopoverBasic() {
           필터
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start">
+      <PopoverContent align="start" className="w-sm">
         <PopoverHeader>
-          <PopoverTitle>Dimensions</PopoverTitle>
+          <PopoverTitle className="font-apple-semibold mb-2">필터</PopoverTitle>
           <PopoverDescription>
-            Set the dimensions for the layer.
+            <FieldGroup className="flex flex-col gap-2">
+              <div className="flex flex-row gap-2">
+                <p className="font-apple-semibold w-20">메시지 종류</p>
+                <div className="flex flex-row gap-3">
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="sms" name="sms" />
+                    <FieldLabel htmlFor="sms">SMS</FieldLabel>
+                  </Field>
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="lms" name="lms" />
+                    <FieldLabel htmlFor="lms">LMS</FieldLabel>
+                  </Field>
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="mms" name="mms" />
+                    <FieldLabel htmlFor="mms">MMS</FieldLabel>
+                  </Field>
+                </div>
+              </div>
+              <div className="flex flex-row gap-2">
+                <p className="font-apple-semibold w-20">발송 상태</p>
+                <div className="flex flex-row gap-3">
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="reserved" name="reserved" />
+                    <FieldLabel htmlFor="reserved">예약</FieldLabel>
+                  </Field>
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="completed" name="completed" />
+                    <FieldLabel htmlFor="completed">완료</FieldLabel>
+                  </Field>
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="failed" name="failed" />
+                    <FieldLabel htmlFor="failed">실패</FieldLabel>
+                  </Field>
+                  <Field orientation="horizontal" className="flex gap-1">
+                    <Checkbox id="cancelled" name="cancelled" />
+                    <FieldLabel htmlFor="cancelled">취소</FieldLabel>
+                  </Field>
+                </div>
+              </div>
+            </FieldGroup>
+            {/* <div className="flex justify-end">
+              <Button variant="outline" className="mt-2">
+                필터 적용하기
+              </Button>
+            </div> */}
           </PopoverDescription>
         </PopoverHeader>
       </PopoverContent>

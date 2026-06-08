@@ -8,30 +8,12 @@ import {
 } from "@/shared/components/ui/status-noborder";
 import { formatDateTime } from "@/shared/utils/formatDate";
 import { formatPhoneNumber } from "@/shared/utils/formatPhoneNumber";
-import type { ContentType, MessageResultItem, MessageType } from "./types";
-
-const MESSAGE_TYPE_CONFIG: Record<
-  MessageType,
-  { label: string; variant: "green" | "orange" | "red" | "yellow" | "blue" }
-> = {
-  SMS: { label: "SMS", variant: "green" },
-  LMS: { label: "LMS", variant: "orange" },
-  MMS: { label: "MMS", variant: "red" },
-  ALIMTALK: { label: "알림톡", variant: "yellow" },
-  FRIENDTALK: { label: "친구톡", variant: "blue" },
-};
-
-const CONTENT_TYPE_CONFIG: Record<ContentType, { label: string }> = {
-  COMMON: { label: "일반" },
-  AD: { label: "광고" },
-};
-
-const STATUS_CONFIG = {
-  COMPLETED: { label: "성공", variant: "green" },
-  RESERVED: { label: "예약", variant: "yellow" },
-  FAILED: { label: "실패", variant: "red" },
-  CANCELED: { label: "취소", variant: "gray" },
-};
+import {
+  CONTENT_TYPE_CONFIG,
+  MESSAGE_TYPE_CONFIG,
+  STATUS_CONFIG,
+} from "./constants";
+import type { MessageResultItem } from "./types";
 
 export const messageResultsColumns: ColumnDef<MessageResultItem>[] = [
   {

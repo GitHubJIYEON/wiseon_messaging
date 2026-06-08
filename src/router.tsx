@@ -95,7 +95,7 @@ const router = createBrowserRouter([
                 ),
               },
               {
-                path: "calling-number/:id",
+                path: "calling-number/list",
                 element: withSuspense(
                   () => import("./pages/calling-number/CallingNumberPage.tsx"),
                 ),

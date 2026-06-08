@@ -56,14 +56,13 @@ export default function UnsubscribesDialog({
     setSelectedFile(file);
   }
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     applyFile(e.target.files?.[0] ?? null);
-  }
-
-  function handleRemoveFile() {
+  };
+  const handleRemoveFile = () => {
     setSelectedFile(null);
     if (fileInputRef.current) fileInputRef.current.value = "";
-  }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

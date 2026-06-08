@@ -11,13 +11,13 @@ import Chart from "react-apexcharts";
 import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 
-type PeriodFilter = "7d" | "30d" | "month";
+type PeriodFilter = "7d" | "month" | "3month";
 type MessageTypeFilter = "all" | "SMS" | "LMS" | "MMS";
 
 const periodOptions: { label: string; value: PeriodFilter }[] = [
   { label: "최근 7일", value: "7d" },
-  { label: "최근 30일", value: "30d" },
   { label: "이번 달", value: "month" },
+  { label: "3개월", value: "3month" },
 ];
 
 const messageTypeOptions: { label: string; value: MessageTypeFilter }[] = [

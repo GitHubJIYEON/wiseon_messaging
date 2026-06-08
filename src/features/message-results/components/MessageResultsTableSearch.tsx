@@ -1,9 +1,16 @@
 import { useState } from "react";
-import { RefreshCw, Search } from "lucide-react";
+import { addDays, format } from "date-fns";
+import { CalendarIcon, RefreshCw, Search } from "lucide-react";
 import excelIcon from "@/assets/icons/excel_icon.png";
 import { Button } from "@/shared/components/ui/button";
-import { Field } from "@/shared/components/ui/field";
+import { Calendar } from "@/shared/components/ui/calendar";
+import { Field, FieldLabel } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shared/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -28,6 +35,11 @@ export default function MessageResultsTableSearch({
   const [contentType, setContentType] = useState("");
   const [statusType, setStatusType] = useState("");
   const [inputValue, setInputValue] = useState("");
+
+  const [date, setDate] = useState({
+    from: new Date(new Date().getFullYear(), 0, 20),
+    to: addDays(new Date(new Date().getFullYear(), 0, 20), 20),
+  });
 
   const handleSearch = () => {
     onSearch(inputValue.trim());
@@ -56,6 +68,43 @@ export default function MessageResultsTableSearch({
     <div className="mb-4 flex flex-col gap-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
+          {/* 검색 날짜 from ~ to */}
+          <Field className="mx-auto w-60">
+            {/* <FieldLabel htmlFor="date-picker-range">예약 날짜</FieldLabel> */}
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  id="date-picker-range"
+                  className="justify-start px-2.5 font-normal"
+                >
+                  <CalendarIcon />
+                  {date?.from ? (
+                    date.to ? (
+                      <>
+                        {format(date.from, "LLL dd, y")} -{" "}
+                        {format(date.to, "LLL dd, y")}
+                      </>
+                    ) : (
+                      format(date.from, "LLL dd, y")
+                    )
+                  ) : (
+                    <span>Pick a date</span>
+                  )}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="range"
+                  defaultMonth={date?.from}
+                  selected={date}
+                  onSelect={setDate}
+                  numberOfMonths={2}
+                />
+              </PopoverContent>
+            </Popover>
+          </Field>
+
           <Field className="w-[140px]">
             {/* <FieldLabel htmlFor="message-type-select"></FieldLabel> */}
             <Select

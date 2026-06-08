@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "senderId": "b7d3bb38-2106-48ff-a441-8bee69b09847",
+      "requestId": "4394d607c7e1435a91cf99010f23dd2e",
+      "certType": "DOC",
+      "requestTime": 1774427551417,
+      "treatTime": 1774437715706,
+      "processTime": 1774437715706,
+      "ownerName": "와이즈인컴퍼니",
+      "telNo": "025585144",
+      "serviceNo": 30722,
+      "treatStatus": "APPROVE",
+      "processStatus": "COMPLETE",
+      "expireTime": 1837522799999
+    }
+  ],
+  "pageIndex": 0,
+  "pageSize": 20,
+  "itemCount": 1,
+  "hasPrevious": false,
+  "hasNext": false,
+  "totalCount": 1
+}

@@ -1,0 +1,47 @@
+{
+  "serviceId": "ncp-gov:sms:kr:1162413571:wiseon_messaging",
+  "serviceNo": 30722,
+  "memberNo": "11624",
+  "localSmsQuotaUsage": {
+    "quotaUsageType": "SMS",
+    "dailyQuota": 100000,
+    "dailyQuotaUsage": 0,
+    "dailyQuotaUsageRate": 0,
+    "monthlyQuota": 500000,
+    "monthlyQuotaUsage": 0,
+    "monthlyQuotaUsageRate": 0,
+    "quotaGrade": {
+      "gradeCode": "DEFAULT",
+      "gradeName": "기본",
+      "dailyLimit": 100000,
+      "monthlyLimit": 500000
+    }
+  },
+  "globalSmsQuotaUsage": {
+    "quotaUsageType": "GMS",
+    "dailyQuota": 500,
+    "dailyQuotaUsage": 0,
+    "dailyQuotaUsageRate": 0,
+    "monthlyQuota": 500,
+    "monthlyQuotaUsage": 0,
+    "monthlyQuotaUsageRate": 0,
+    "quotaGrade": {
+      "gradeCode": "DEFAULT",
+      "gradeName": "기본",
+      "dailyLimit": 500,
+      "monthlyLimit": 500
+    }
+  },
+  "localSmsQuotaGrade": {
+    "gradeCode": "DEFAULT",
+    "gradeName": "기본",
+    "dailyLimit": 100000,
+    "monthlyLimit": 500000
+  },
+  "globalSmsQuotaGrade": {
+    "gradeCode": "DEFAULT",
+    "gradeName": "기본",
+    "dailyLimit": 500,
+    "monthlyLimit": 500
+  }
+}

@@ -1,0 +1,284 @@
+[
+  {
+    "senderNumberId": 1,
+    "senderNumber": "0212345678",
+    "name": "고객센터 대표번호",
+    "applicantName": "김예서",
+    "requestContent": "고객센터 대표번호로 사용 예정입니다. 빠른 승인 부탁드립니다.",
+    "status": "APPROVED",
+    "enabled": true,
+    "rejectionReason": null,
+    "createdAt": "2026.01.15",
+    "updatedAt": "2026.01.16",
+    "expiredAt": "2027.01.14",
+    "documents": [
+      {
+        "documentId": 101,
+        "documentType": "BUSINESS_REGISTRATION",
+        "originalFileName": "사업자등록증_와이즈인컴퍼니.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 174009,
+        "createdAt": "2026.01.15"
+      },
+      {
+        "documentId": 102,
+        "documentType": "TELECOM_SERVICE_CERTIFICATE",
+        "originalFileName": "통신서비스 이용증명원.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 532763,
+        "createdAt": "2026.01.15"
+      },
+      {
+        "documentId": 103,
+        "documentType": "POWER_OF_ATTORNEY",
+        "originalFileName": "위임장.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 108290,
+        "createdAt": "2026.01.15"
+      },
+      {
+        "documentId": 104,
+        "documentType": "REPRESENTATIVE_PROOF",
+        "originalFileName": "대표자_신분증.jpg",
+        "contentType": "image/jpeg",
+        "fileSize": 254870,
+        "createdAt": "2026.01.15"
+      }
+    ]
+  },
+  {
+    "senderNumberId": 2,
+    "senderNumber": "0288881234",
+    "name": "공공기관 번호",
+    "applicantName": "박지훈",
+    "requestContent": "공공기관 민원 응대용 번호입니다.",
+    "status": "APPROVED",
+    "enabled": false,
+    "rejectionReason": null,
+    "createdAt": "2026.02.03",
+    "updatedAt": "2026.02.04",
+    "expiredAt": "2027.02.02",
+    "documents": [
+      {
+        "documentId": 201,
+        "documentType": "BUSINESS_REGISTRATION",
+        "originalFileName": "사업자등록증_공공기관.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 188204,
+        "createdAt": "2026.02.03"
+      },
+      {
+        "documentId": 202,
+        "documentType": "TELECOM_SERVICE_CERTIFICATE",
+        "originalFileName": "통신서비스 이용증명원_공공기관.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 498120,
+        "createdAt": "2026.02.03"
+      },
+      {
+        "documentId": 203,
+        "documentType": "POWER_OF_ATTORNEY",
+        "originalFileName": "위임장_공공기관.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 112450,
+        "createdAt": "2026.02.03"
+      },
+      {
+        "documentId": 204,
+        "documentType": "REPRESENTATIVE_PROOF",
+        "originalFileName": "재직증명서.png",
+        "contentType": "image/png",
+        "fileSize": 332019,
+        "createdAt": "2026.02.03"
+      }
+    ]
+  },
+  {
+    "senderNumberId": 3,
+    "senderNumber": "0211111111",
+    "name": "테스트 신청 번호",
+    "applicantName": "이서연",
+    "requestContent": "",
+    "status": "APPROVED",
+    "enabled": true,
+    "rejectionReason": null,
+    "createdAt": "2026.03.10",
+    "updatedAt": "2026.03.11",
+    "expiredAt": "2027.03.09",
+    "documents": [
+      {
+        "documentId": 301,
+        "documentType": "BUSINESS_REGISTRATION",
+        "originalFileName": "사업자등록증_테스트.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 165320,
+        "createdAt": "2026.03.10"
+      },
+      {
+        "documentId": 302,
+        "documentType": "TELECOM_SERVICE_CERTIFICATE",
+        "originalFileName": "통신서비스 이용증명원_테스트.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 510233,
+        "createdAt": "2026.03.10"
+      },
+      {
+        "documentId": 303,
+        "documentType": "POWER_OF_ATTORNEY",
+        "originalFileName": "위임장_테스트.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 105870,
+        "createdAt": "2026.03.10"
+      },
+      {
+        "documentId": 304,
+        "documentType": "REPRESENTATIVE_PROOF",
+        "originalFileName": "대표자_신분증_테스트.jpg",
+        "contentType": "image/jpeg",
+        "fileSize": 248110,
+        "createdAt": "2026.03.10"
+      }
+    ]
+  },
+  {
+    "senderNumberId": 4,
+    "senderNumber": "0211111112",
+    "name": "테스트 신청 번호",
+    "applicantName": "최민준",
+    "requestContent": "",
+    "status": "APPROVED",
+    "enabled": false,
+    "rejectionReason": null,
+    "createdAt": "2026.03.12",
+    "updatedAt": "2026.03.13",
+    "expiredAt": "2027.03.11",
+    "documents": [
+      {
+        "documentId": 401,
+        "documentType": "BUSINESS_REGISTRATION",
+        "originalFileName": "사업자등록증_테스트4.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 170540,
+        "createdAt": "2026.03.12"
+      },
+      {
+        "documentId": 402,
+        "documentType": "TELECOM_SERVICE_CERTIFICATE",
+        "originalFileName": "통신서비스 이용증명원_테스트4.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 522410,
+        "createdAt": "2026.03.12"
+      },
+      {
+        "documentId": 403,
+        "documentType": "POWER_OF_ATTORNEY",
+        "originalFileName": "위임장_테스트4.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 109930,
+        "createdAt": "2026.03.12"
+      },
+      {
+        "documentId": 404,
+        "documentType": "REPRESENTATIVE_PROOF",
+        "originalFileName": "재직증명서_테스트4.png",
+        "contentType": "image/png",
+        "fileSize": 341260,
+        "createdAt": "2026.03.12"
+      }
+    ]
+  },
+  {
+    "senderNumberId": 5,
+    "senderNumber": "0211111113",
+    "name": "테스트 신청 번호",
+    "applicantName": "정하윤",
+    "requestContent": "",
+    "status": "APPROVED",
+    "enabled": true,
+    "rejectionReason": null,
+    "createdAt": "2026.03.15",
+    "updatedAt": "2026.03.16",
+    "expiredAt": "2027.03.14",
+    "documents": [
+      {
+        "documentId": 501,
+        "documentType": "BUSINESS_REGISTRATION",
+        "originalFileName": "사업자등록증_테스트5.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 168700,
+        "createdAt": "2026.03.15"
+      },
+      {
+        "documentId": 502,
+        "documentType": "TELECOM_SERVICE_CERTIFICATE",
+        "originalFileName": "통신서비스 이용증명원_테스트5.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 505980,
+        "createdAt": "2026.03.15"
+      },
+      {
+        "documentId": 503,
+        "documentType": "POWER_OF_ATTORNEY",
+        "originalFileName": "위임장_테스트5.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 107210,
+        "createdAt": "2026.03.15"
+      },
+      {
+        "documentId": 504,
+        "documentType": "REPRESENTATIVE_PROOF",
+        "originalFileName": "대표자_신분증_테스트5.jpg",
+        "contentType": "image/jpeg",
+        "fileSize": 251430,
+        "createdAt": "2026.03.15"
+      }
+    ]
+  },
+  {
+    "senderNumberId": 6,
+    "senderNumber": "0211111114",
+    "name": "테스트 신청 번호",
+    "applicantName": "강도윤",
+    "requestContent": "",
+    "status": "APPROVED",
+    "enabled": false,
+    "rejectionReason": null,
+    "createdAt": "2026.03.18",
+    "updatedAt": "2026.03.19",
+    "expiredAt": "2027.03.17",
+    "documents": [
+      {
+        "documentId": 601,
+        "documentType": "BUSINESS_REGISTRATION",
+        "originalFileName": "사업자등록증_테스트6.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 172380,
+        "createdAt": "2026.03.18"
+      },
+      {
+        "documentId": 602,
+        "documentType": "TELECOM_SERVICE_CERTIFICATE",
+        "originalFileName": "통신서비스 이용증명원_테스트6.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 518640,
+        "createdAt": "2026.03.18"
+      },
+      {
+        "documentId": 603,
+        "documentType": "POWER_OF_ATTORNEY",
+        "originalFileName": "위임장_테스트6.pdf",
+        "contentType": "application/pdf",
+        "fileSize": 110870,
+        "createdAt": "2026.03.18"
+      },
+      {
+        "documentId": 604,
+        "documentType": "REPRESENTATIVE_PROOF",
+        "originalFileName": "재직증명서_테스트6.png",
+        "contentType": "image/png",
+        "fileSize": 338510,
+        "createdAt": "2026.03.18"
+      }
+    ]
+  }
+]

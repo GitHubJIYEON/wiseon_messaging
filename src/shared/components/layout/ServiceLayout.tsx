@@ -82,9 +82,9 @@ const MENU_ITEMS: MenuItem[] = [
     id: "calling-number",
     label: "발신 번호",
     icon: "calling-number",
-    defaultPath: "/calling-number",
+    defaultPath: "/calling-number/list",
     subMenus: [
-      { path: `/calling-number/:id`, label: "발신 번호 관리" },
+      { path: `/calling-number/list`, label: "발신 번호 관리" },
       { path: "/calling-number/new", label: "발신 번호 신청" },
     ],
   },

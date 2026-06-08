@@ -23,7 +23,7 @@ function StepHeader({
       </span>
       <h4 className={cn("text-md", titleClassName)}>{title}</h4>
       {required && (
-        <Badge className="ml-auto" variant="red">
+        <Badge className="ml-auto" variant={required ? "red" : "gray"}>
           {required ? "필수" : "선택"}
         </Badge>
       )}

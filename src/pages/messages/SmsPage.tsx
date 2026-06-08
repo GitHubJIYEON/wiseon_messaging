@@ -1,3 +1,264 @@
+import { useState } from "react";
+import { MessageSquareTextIcon } from "lucide-react";
+import { Button } from "@/shared/components/ui/button";
+import { Calendar } from "@/shared/components/ui/calendar";
+import {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+  FieldTitle,
+} from "@/shared/components/ui/field";
+import { Input } from "@/shared/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shared/components/ui/popover";
+import { RadioGroup, RadioGroupItem } from "@/shared/components/ui/radio-group";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/shared/components/ui/select";
+import { StepHeader } from "@/shared/components/ui/step-header";
+import { Textarea } from "@/shared/components/ui/textarea";
+import {
+  TimePicker,
+  TimePickerContent,
+  TimePickerHour,
+  TimePickerInput,
+  TimePickerInputGroup,
+  TimePickerLabel,
+  TimePickerMinute,
+  TimePickerPeriod,
+  TimePickerSeparator,
+  TimePickerTrigger,
+} from "@/shared/components/ui/time-picker";
+
+const SendNumbder = [
+  { value: "public", label: "공공기관", number: "02-6321-4141" },
+  { value: "private", label: "민간기관", number: "02-6321-4141" },
+  { value: "other", label: "기타", number: "02-6321-4141" },
+];
+
 export default function SmsPage() {
-  return <div>SmsPage</div>;
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date | undefined>(undefined);
+  const [sendTiming, setSendTiming] = useState<"NOW" | "RESERVATION">("NOW");
+
+  return (
+    <section className="mx-auto mb-10 flex max-w-6xl flex-col gap-6">
+      <h1 className="mt-8 text-center text-2xl">문자 보내기</h1>
+
+      <div className="flex w-full flex-row gap-6">
+        {/* 폼 */}
+        <div className="flex w-2/3 flex-col gap-6">
+          <div className="flex flex-row items-center justify-between rounded-md bg-white p-7 shadow-sm">
+            <StepHeader number={1} title="발신 번호 선택" />
+            <Select>
+              <SelectTrigger className="w-1/2">
+                <SelectValue placeholder={SendNumbder[0].number} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {SendNumbder.map((item) => (
+                    <SelectItem key={item.value} value={item.value as string}>
+                      <div className="flex items-center gap-2">
+                        <span className="font-apple-medium text-md text-black">
+                          {item.number}
+                        </span>
+                        <span className="font-apple-medium text-md text-gray-600">
+                          ({item.label})
+                        </span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
+            <StepHeader number={2} title="광고문자 여부 선택" />
+            <RadioGroup defaultValue="COMM" className="flex">
+              <FieldLabel htmlFor="COMM">
+                <Field orientation="horizontal">
+                  <RadioGroupItem value="COMM" id="COMM" />
+                  <FieldContent>
+                    <FieldTitle>정보성 문자</FieldTitle>
+                    <FieldDescription>
+                      단순 안내 목적의 정보성 문자
+                    </FieldDescription>
+                  </FieldContent>
+                </Field>
+              </FieldLabel>
+              <FieldLabel htmlFor="AD">
+                <Field orientation="horizontal">
+                  <RadioGroupItem value="AD" id="AD" />
+                  <FieldContent>
+                    <FieldTitle>광고성 문자</FieldTitle>
+                    <FieldDescription>
+                      (광고) 표기 및 수신거부 번호 포함 광고 형식 준수
+                    </FieldDescription>
+                  </FieldContent>
+                </Field>
+              </FieldLabel>
+            </RadioGroup>
+          </div>
+          <div className="rounded-md bg-white p-7 shadow-sm">
+            <StepHeader number={3} title="발송 대상 선택" />
+          </div>
+          <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
+            <StepHeader number={4} title="문자 내용 작성" />
+            {/* 메시지 타입 - SMS, LMS */}
+            <RadioGroup defaultValue="SMS" className="flex">
+              <FieldLabel htmlFor="SMS">
+                <Field orientation="horizontal">
+                  <RadioGroupItem value="SMS" id="SMS" />
+                  <FieldContent>
+                    <FieldTitle>SMS (단문)</FieldTitle>
+                    <FieldDescription>90byte 이하 단문 발송</FieldDescription>
+                  </FieldContent>
+                </Field>
+              </FieldLabel>
+              <FieldLabel htmlFor="LMS">
+                <Field orientation="horizontal">
+                  <RadioGroupItem value="LMS" id="LMS" />
+                  <FieldContent>
+                    <FieldTitle>LMS (장문)</FieldTitle>
+                    <FieldDescription>2000byte 이하 장문 발송</FieldDescription>
+                  </FieldContent>
+                </Field>
+              </FieldLabel>
+            </RadioGroup>
+
+            <FieldGroup>
+              {/* 메시지 제목 - LMS,MMS 만  */}
+              <Field>
+                <FieldLabel htmlFor="subject">제목</FieldLabel>
+                <Input
+                  id="subject"
+                  placeholder="제목을 입력해주세요 (40Byte)"
+                  required
+                />
+              </Field>
+              {/* 메시지 내용  */}
+              <Field>
+                <FieldLabel htmlFor="messages">내용</FieldLabel>
+                <Textarea
+                  id="messages"
+                  placeholder="내용을 입력해주세요"
+                  className="resize-none"
+                />
+                <FieldDescription>
+                  변수는 실제 발송 시 수신자 데이터로 치환됩니다.
+                </FieldDescription>
+              </Field>
+            </FieldGroup>
+          </div>
+          <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
+            <StepHeader number={5} title="발송 일시 선택" />
+            <RadioGroup
+              value={sendTiming}
+              onValueChange={(value) => {
+                if (value === "NOW" || value === "RESERVATION") {
+                  setSendTiming(value);
+                }
+              }}
+              className="flex"
+            >
+              <FieldLabel htmlFor="NOW">
+                <Field orientation="horizontal">
+                  <RadioGroupItem value="NOW" id="NOW" />
+                  <FieldContent>
+                    <FieldTitle>즉시 발송</FieldTitle>
+                    <FieldDescription>검토 후 바로 발송</FieldDescription>
+                  </FieldContent>
+                </Field>
+              </FieldLabel>
+              <FieldLabel htmlFor="RESERVATION">
+                <Field orientation="horizontal">
+                  <RadioGroupItem value="RESERVATION" id="RESERVATION" />
+                  <FieldContent>
+                    <FieldTitle>예약 발송</FieldTitle>
+                    <FieldDescription>
+                      원하는 날짜와 시간 예약 발송
+                    </FieldDescription>
+                  </FieldContent>
+                </Field>
+              </FieldLabel>
+            </RadioGroup>
+            {sendTiming === "RESERVATION" && (
+              <div className="bg-point-gray-100 flex items-center gap-3 rounded-md p-6">
+                {/* 예약 날짜 */}
+                <Field className="flex flex-1 flex-col">
+                  <FieldLabel htmlFor="date">예약 날짜</FieldLabel>
+                  <Popover open={open} onOpenChange={setOpen}>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        id="date"
+                        className="justify-start font-normal"
+                      >
+                        {date ? date.toLocaleDateString() : "Select date"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent
+                      className="w-auto overflow-hidden p-0"
+                      align="start"
+                    >
+                      <Calendar
+                        mode="single"
+                        selected={date}
+                        defaultMonth={date}
+                        captionLayout="dropdown"
+                        onSelect={(date) => {
+                          setDate(date);
+                          setOpen(false);
+                        }}
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </Field>
+                {/* 예약 시간 */}
+                <TimePicker className="flex flex-1 flex-col gap-3">
+                  <TimePickerLabel>예약 시간</TimePickerLabel>
+                  <TimePickerInputGroup className="h-[36px]">
+                    <TimePickerInput segment="hour" />
+                    <TimePickerSeparator />
+                    <TimePickerInput segment="minute" />
+                    <TimePickerInput segment="period" />
+                    <TimePickerTrigger />
+                  </TimePickerInputGroup>
+                  <TimePickerContent>
+                    <TimePickerHour />
+                    <TimePickerMinute />
+                    <TimePickerPeriod />
+                  </TimePickerContent>
+                </TimePicker>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 발송 미리보기 + 발송 버튼*/}
+        <div className="sticky top-0 flex w-1/3 flex-col gap-6 rounded-md bg-white p-7 shadow-sm">
+          <div className="flex items-center justify-center gap-2">
+            <MessageSquareTextIcon className="text-primary-500 size-5" />
+            <p> 발송 미리보기</p>
+          </div>
+          <div className="h-80 rounded-xl border border-gray-200"></div>
+
+          {/* 발송 버튼 */}
+          <Button variant="default" className="w-full" size="lg">
+            발송하기
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
 }

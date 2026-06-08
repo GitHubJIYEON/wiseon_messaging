@@ -1,12 +1,16 @@
+import { useState } from "react";
 import addressbookData from "@/features/address-book/data/addressbook.json";
 import { DataTable } from "@/shared/components/dataTable/DataTable";
 import { Button } from "@/shared/components/ui/button";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import { useDataTable } from "@/shared/hooks/dataTable/useDataTable";
 import { formatDateTime } from "@/shared/utils/formatDate";
+import AddressBookAddMembersDialog from "./AddressBookAddMembersDialog";
 import AddressBookTableSearch from "./AddressBookTableSearch";
 
 export default function AddressBookTable() {
+  const [addMembersOpen, setAddMembersOpen] = useState(false);
+  const [selectedGroupName, setSelectedGroupName] = useState("");
   const { table } = useDataTable({
     data: addressbookData,
     columns: [
@@ -102,7 +106,8 @@ export default function AddressBookTable() {
   });
 
   const handleAddMembers = (row: any) => {
-    console.log(row);
+    setSelectedGroupName(row.groupName ?? "");
+    setAddMembersOpen(true);
   };
 
   const handleDetail = (row: any) => {
@@ -117,6 +122,12 @@ export default function AddressBookTable() {
       <DataTable table={table}>
         <AddressBookTableSearch onSearch={handleSearch} />
       </DataTable>
+
+      <AddressBookAddMembersDialog
+        open={addMembersOpen}
+        onOpenChange={setAddMembersOpen}
+        initialGroupName={selectedGroupName}
+      />
     </div>
   );
 }
