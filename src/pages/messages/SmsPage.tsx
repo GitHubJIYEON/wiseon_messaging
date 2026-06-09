@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageSquareTextIcon } from "lucide-react";
+import { Check, MessageSquareTextIcon, Plus } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import { Calendar } from "@/shared/components/ui/calendar";
 import {
@@ -109,8 +109,16 @@ export default function SmsPage() {
               </FieldLabel>
             </RadioGroup>
           </div>
-          <div className="rounded-md bg-white p-7 shadow-sm">
+          <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={3} title="발송 대상 선택" />
+            <ul className="bg-point-gray-200 rounded-md border-gray-300 p-4">
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-[#46474c]" />
+                <p className="font-apple-medium text-sm text-[#46474c]">
+                  중복/수신거부 대상은 발송 시 자동 제외
+                </p>
+              </li>
+            </ul>
           </div>
           <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={4} title="문자 내용 작성" />
@@ -159,6 +167,45 @@ export default function SmsPage() {
                 </FieldDescription>
               </Field>
             </FieldGroup>
+            <div className="bg-point-gray-100 rounded-md border p-4">
+              <p className="font-apple-medium text-sm text-gray-700">
+                사용 가능한 변수
+              </p>
+              <div className="flex flex-col gap-2">
+                <p className="font-apple-medium text-sm text-gray-600">
+                  변수를 클릭하면 치환된 결과가 미리보기에 표시됩니다.
+                </p>
+                <ul className="flex flex-wrap gap-2">
+                  <li>
+                    <Button
+                      variant="outline"
+                      className="border-primary-500 text-primary-500 hover:text-primary-500 rounded-full hover:bg-white"
+                    >
+                      #{"이름"}
+                    </Button>
+                  </li>
+                  <li>
+                    <Button variant="outline" className="rounded-full">
+                      #{"생년월일"}
+                    </Button>
+                  </li>
+                  <li>
+                    <Button variant="outline" className="rounded-full">
+                      #{"이메일"}
+                    </Button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <ul className="rounded-md border-gray-300 bg-yellow-50 p-4">
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-[#46474c]" />
+                <p className="font-apple-medium text-sm text-[#46474c]">
+                  <strong>변수</strong>를 사용하면 고객별로 맞춤 메시지를 보낼
+                  수 있어요
+                </p>
+              </li>
+            </ul>
           </div>
           <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={5} title="발송 일시 선택" />
@@ -252,6 +299,7 @@ export default function SmsPage() {
             <p> 발송 미리보기</p>
           </div>
           <div className="h-80 rounded-xl border border-gray-200"></div>
+          <div className="h-40 rounded-xl border border-gray-200"></div>
 
           {/* 발송 버튼 */}
           <Button variant="default" className="w-full" size="lg">
