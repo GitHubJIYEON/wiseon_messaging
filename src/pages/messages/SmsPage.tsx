@@ -1,7 +1,21 @@
 import { useState } from "react";
-import { Check, MessageSquareTextIcon, Plus } from "lucide-react";
+import {
+  Bell,
+  Check,
+  CircleAlert,
+  MessageSquareTextIcon,
+  Plus,
+} from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import { Calendar } from "@/shared/components/ui/calendar";
+import { Checkbox } from "@/shared/components/ui/checkbox";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/shared/components/ui/empty";
 import {
   Field,
   FieldContent,
@@ -46,10 +60,22 @@ const SendNumbder = [
   { value: "other", label: "기타", number: "02-6321-4141" },
 ];
 
+const RejectNumber = [
+  { value: "reject", label: "와이즈온 수신거부번호", number: "02-6321-4141" },
+  {
+    value: "more",
+    label: "신규",
+    number: "+ 수신거부번호 등록하기",
+  },
+];
+
 export default function SmsPage() {
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [sendTiming, setSendTiming] = useState<"NOW" | "RESERVATION">("NOW");
+  const [rejectNumber, setRejectNumber] = useState<string>("02-1234-1234");
+  const [isAdvertising, setIsAdvertising] = useState<"COMM" | "AD">("COMM");
+  const [isLMS, setIsLMS] = useState(false);
 
   return (
     <section className="mx-auto mb-10 flex max-w-6xl flex-col gap-6">
@@ -84,7 +110,15 @@ export default function SmsPage() {
           </div>
           <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={2} title="광고문자 여부 선택" />
-            <RadioGroup defaultValue="COMM" className="flex">
+            <RadioGroup
+              defaultValue="COMM"
+              className="flex"
+              onValueChange={(value) => {
+                if (value === "COMM" || value === "AD") {
+                  setIsAdvertising(value as "COMM" | "AD");
+                }
+              }}
+            >
               <FieldLabel htmlFor="COMM">
                 <Field orientation="horizontal">
                   <RadioGroupItem value="COMM" id="COMM" />
@@ -108,9 +142,90 @@ export default function SmsPage() {
                 </Field>
               </FieldLabel>
             </RadioGroup>
+
+            {/* 광고성 문자 선택시 상호명 입력 */}
+            {isAdvertising === "AD" ? (
+              <>
+                <div className="bg-point-gray-100 flex items-center gap-3 rounded-md p-6">
+                  <Field className="flex w-1/2">
+                    <FieldLabel htmlFor="companyName" className=" ">
+                      상호명
+                    </FieldLabel>
+                    <Input
+                      className="bg-white"
+                      id="companyName"
+                      placeholder="상호명을 입력해주세요"
+                      required
+                    />
+                  </Field>
+                  <Field className="flex w-1/2">
+                    {/* 광고성 문자 선택시 수신거부번호 선택 */}
+                    <FieldLabel htmlFor="rejectNumber">수신거부번호</FieldLabel>
+                    <Input
+                      id="rejectNumber"
+                      value={rejectNumber}
+                      className="bg-white"
+                      disabled
+                    />
+                  </Field>
+                </div>
+                <ul className="rounded-md border-gray-300 bg-yellow-50 p-4">
+                  <li className="flex items-center gap-2">
+                    <CircleAlert className="mb-2 size-5 text-yellow-500" />
+                    <p className="font-apple-medium text-md text-[#46474c]">
+                      <strong>광고 문자</strong> 반드시 광고 형식{" "}
+                      <strong> (상호명, 수신거부번호) </strong>을 준수해주세요
+                    </p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="size-4 text-[#46474c]" />
+                    <p className="font-apple-medium text-sm text-[#46474c]">
+                      광고성 문자를 선택하면 <strong> (광고) 표기 </strong> 및{" "}
+                      <strong> 수신거부번호 </strong>
+                      포함됩니다.
+                    </p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="size-4 text-[#46474c]" />
+                    <p className="font-apple-medium text-sm text-[#46474c]">
+                      마케팅 목적의 메시지는 꼭 '광고 문자'로 선택해주세요
+                    </p>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="size-4 text-[#46474c]" />
+                    <p className="font-apple-medium text-sm text-[#46474c]">
+                      수신거부번호 서비스에 등록된 번호로 발송됩니다.
+                    </p>
+                  </li>
+                </ul>
+              </>
+            ) : (
+              <ul className="bg-point-gray-200 rounded-md border-gray-300 p-4">
+                <li className="flex items-center gap-2">
+                  <Bell className="mb-2 size-5 text-blue-500" />
+                  <p className="font-apple-medium text-md text-[#46474c]">
+                    정보성 문자 VS 광고성 문자
+                  </p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="size-4 text-[#46474c]" />
+                  <p className="font-apple-medium text-sm text-[#46474c]">
+                    단순 안내 목적의 정보성 문자 (ex 설문조사 응답 안내)
+                  </p>
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="size-4 text-[#46474c]" />
+                  <p className="font-apple-medium text-sm text-[#46474c]">
+                    마케팅 목적의 광고성 문자 (ex 이벤트 안내)
+                  </p>
+                </li>
+              </ul>
+            )}
           </div>
+
           <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={3} title="발송 대상 선택" />
+            <div></div>
             <ul className="bg-point-gray-200 rounded-md border-gray-300 p-4">
               <li className="flex items-center gap-2">
                 <Check className="size-4 text-[#46474c]" />
@@ -124,7 +239,7 @@ export default function SmsPage() {
             <StepHeader number={4} title="문자 내용 작성" />
             {/* 메시지 타입 - SMS, LMS */}
             <RadioGroup defaultValue="SMS" className="flex">
-              <FieldLabel htmlFor="SMS">
+              <FieldLabel htmlFor="SMS" onClick={() => setIsLMS(true)}>
                 <Field orientation="horizontal">
                   <RadioGroupItem value="SMS" id="SMS" />
                   <FieldContent>
@@ -133,7 +248,7 @@ export default function SmsPage() {
                   </FieldContent>
                 </Field>
               </FieldLabel>
-              <FieldLabel htmlFor="LMS">
+              <FieldLabel htmlFor="LMS" onClick={() => setIsLMS(false)}>
                 <Field orientation="horizontal">
                   <RadioGroupItem value="LMS" id="LMS" />
                   <FieldContent>
@@ -144,10 +259,53 @@ export default function SmsPage() {
               </FieldLabel>
             </RadioGroup>
 
-            <FieldGroup>
+            {/* 이미지 첨부 파일 - MMS */}
+            {!isLMS && (
+              <div className="flex flex-row gap-3 border-dotted border-gray-300">
+                <Empty className="w-1/3 gap-0 border p-0">
+                  <EmptyHeader>
+                    <EmptyMedia
+                      variant="icon"
+                      className="bg-primary-500 size-8 rounded-full text-white"
+                    >
+                      <Plus className="size-4 text-white" />
+                    </EmptyMedia>
+                  </EmptyHeader>
+                  <EmptyTitle className="text-sm">이미지 (1/3)</EmptyTitle>
+                  <EmptyDescription>JPG, PNG, GIF</EmptyDescription>
+                </Empty>
+                <Empty className="gap-0 border p-0">
+                  <EmptyHeader>
+                    <EmptyMedia
+                      variant="icon"
+                      className="bg-primary-500 size-8 rounded-full text-white"
+                    >
+                      <Plus className="size-4 text-white" />
+                    </EmptyMedia>
+                  </EmptyHeader>
+                  <EmptyTitle className="text-sm">이미지 (2/3)</EmptyTitle>
+                  <EmptyDescription>JPG, PNG, GIF</EmptyDescription>
+                </Empty>
+                <Empty className="gap-0 border p-0">
+                  <EmptyHeader>
+                    <EmptyMedia
+                      variant="icon"
+                      className="bg-primary-500 size-8 rounded-full text-white"
+                    >
+                      <Plus className="size-4 text-white" />
+                    </EmptyMedia>
+                  </EmptyHeader>
+                  <EmptyTitle className="text-sm">이미지 (3/3)</EmptyTitle>
+                  <EmptyDescription>JPG, PNG, GIF</EmptyDescription>
+                </Empty>
+              </div>
+            )}
+            <FieldGroup className="gap-2">
               {/* 메시지 제목 - LMS,MMS 만  */}
               <Field>
-                <FieldLabel htmlFor="subject">제목</FieldLabel>
+                <FieldLabel htmlFor="subject" className="hidden">
+                  제목
+                </FieldLabel>
                 <Input
                   id="subject"
                   placeholder="제목을 입력해주세요 (40Byte)"
@@ -156,11 +314,13 @@ export default function SmsPage() {
               </Field>
               {/* 메시지 내용  */}
               <Field>
-                <FieldLabel htmlFor="messages">내용</FieldLabel>
+                <FieldLabel htmlFor="messages" className="hidden">
+                  내용
+                </FieldLabel>
                 <Textarea
                   id="messages"
                   placeholder="내용을 입력해주세요"
-                  className="resize-none"
+                  className="h-24 resize-none"
                 />
                 <FieldDescription>
                   변수는 실제 발송 시 수신자 데이터로 치환됩니다.

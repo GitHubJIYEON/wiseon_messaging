@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "groupId": 1,
     "groupName": "아산시 공공기관 기본 주소록",
     "groupCount": 10,
     "registeredAt": "2026-01-01T10:00:00.000Z",
@@ -68,7 +68,7 @@
     ]
   },
   {
-    "id": 2,
+    "groupId": 2,
     "groupName": "아산시 공공기관 수영장 주소록",
     "groupCount": 8,
     "registeredAt": "2026-01-05T09:30:00.000Z",
@@ -124,7 +124,7 @@
     ]
   },
   {
-    "id": 3,
+    "groupId": 3,
     "groupName": "온양온천 상가 연합 주소록",
     "groupCount": 6,
     "registeredAt": "2026-01-10T14:15:00.000Z",
@@ -168,7 +168,7 @@
     ]
   },
   {
-    "id": 4,
+    "groupId": 4,
     "groupName": "둔포면 주민센터 주소록",
     "groupCount": 12,
     "registeredAt": "2026-02-03T11:00:00.000Z",
@@ -248,8 +248,8 @@
     ]
   },
   {
-    "id": 5,
-    "groupName": "탕정 스마트밸리 입주사 주소록",
+    "groupId": 5,
+    "groupName": "스마트밸리 입주사 주소록",
     "groupCount": 5,
     "registeredAt": "2026-03-15T16:45:00.000Z",
     "members": [
