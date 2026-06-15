@@ -1,128 +1,73 @@
 import { useState } from "react";
-import addressbookData from "@/features/address-book/data/addressbook.json";
+import { parseAsInteger, parseAsString, useQueryStates } from "nuqs";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 import { DataTable } from "@/shared/components/dataTable/DataTable";
-import { Button } from "@/shared/components/ui/button";
-import { Checkbox } from "@/shared/components/ui/checkbox";
 import { useDataTable } from "@/shared/hooks/dataTable/useDataTable";
-import { formatDateTime } from "@/shared/utils/formatDate";
+import { useAddressBookGroupMutation } from "../hooks/mutations/useAddressBookGroupMutation";
+import { useAddressBookListQuery } from "../hooks/queries/useAddressBookListQuery";
 import AddressBookAddMembersDialog from "./AddressBookAddMembersDialog";
+import AddressBookTableActionBar from "./AddressBookTableActionBar";
+import AddressBookTableColumns from "./AddressBookTableColumns";
 import AddressBookTableSearch from "./AddressBookTableSearch";
 
 export default function AddressBookTable() {
-  const [addMembersOpen, setAddMembersOpen] = useState(false);
-  const [selectedGroupName, setSelectedGroupName] = useState("");
-  const { table } = useDataTable({
-    data: addressbookData,
-    columns: [
-      {
-        id: "select",
-        size: 50,
-        header: ({ table }) => (
-          <Checkbox
-            checked={table.getIsAllPageRowsSelected()}
-            onCheckedChange={(checked) => {
-              table.toggleAllPageRowsSelected(!!checked);
-            }}
-            aria-label="전체 선택"
-          />
-        ),
-        cell: ({ row }) => (
-          <Checkbox
-            checked={row.getIsSelected()}
-            onCheckedChange={(checked) => {
-              row.toggleSelected(!!checked);
-            }}
-            aria-label="선택"
-          />
-        ),
-      },
-      {
-        id: "groupName",
-        size: 400,
-        header: "주소록 그룹명",
-        accessorKey: "groupName",
-        cell: ({ row }) => (
-          <div className="text-left">{row.original.groupName}</div>
-        ),
-      },
-      {
-        id: "groupCount",
-        header: "대상자 수",
-        accessorKey: "groupCount",
-        cell: ({ row }) => <div>{row.original.groupCount}</div>,
-      },
-      {
-        id: "registeredAt",
-        header: "등록 일시",
-        accessorKey: "registeredAt",
-        cell: ({ row }) => (
-          <div>{formatDateTime(new Date(row.original.registeredAt))}</div>
-        ),
-      },
-      {
-        id: "members",
-        size: 100,
-        header: "구성원 추가",
-        accessorKey: "members",
-        cell: ({ row }) => {
-          return (
-            <div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  handleAddMembers(row.original);
-                }}
-              >
-                구성원 추가
-              </Button>
-            </div>
-          );
-        },
-      },
-      {
-        id: "detail",
-        size: 100,
-        header: "상세보기",
-        accessorKey: "detail",
-        cell: ({ row }) => {
-          return (
-            <div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  handleDetail(row.original);
-                }}
-              >
-                상세보기
-              </Button>
-            </div>
-          );
-        },
-      },
-    ],
-    pageCount: 10,
+  const navigate = useNavigate();
+
+  const { mutateAsync: addAddressBookGroup } = useAddressBookGroupMutation();
+
+  // ── URL 쿼리 파라미터: 요청에 필요한 값만 관리
+  const [filters, setFilters] = useQueryStates({
+    page: parseAsInteger.withDefault(1),
+    size: parseAsInteger.withDefault(10),
+    keyword: parseAsString.withDefault(""),
   });
 
-  const handleAddMembers = (row: any) => {
-    setSelectedGroupName(row.groupName ?? "");
-    setAddMembersOpen(true);
-  };
+  const { data: addressBookGroupList } = useAddressBookListQuery({
+    ...filters,
+  });
 
-  const handleDetail = (row: any) => {
-    console.log(row);
-  };
-  const handleSearch = (value: string) => {
-    console.log(value);
-  };
+  const [addMembersOpen, setAddMembersOpen] = useState(false);
+  const [selectedGroupName, setSelectedGroupName] = useState("");
+
+  function moveToDetail(groupId: number) {
+    navigate(`/address-book/${groupId}`);
+  }
+
+  function handleSearch(value: string) {
+    void setFilters({ keyword: value, page: 1 });
+  }
+
+  async function handleAddGroup(groupName: string) {
+    await addAddressBookGroup({ groupName });
+    toast.success(`"${groupName}" 그룹이 추가되었습니다.`);
+  }
+
+  function handleAddMembers(groupName: string) {
+    setSelectedGroupName(groupName);
+    setAddMembersOpen(true);
+  }
+
+  const { table } = useDataTable({
+    data: addressBookGroupList?.content || [],
+    columns: AddressBookTableColumns({ moveToDetail, handleAddMembers }),
+    pageCount: addressBookGroupList?.totalPages ?? 1,
+    meta: {
+      totalCount: addressBookGroupList?.totalElements,
+    },
+  });
 
   return (
     <div className="rounded-md bg-white p-7">
-      <DataTable table={table}>
-        <AddressBookTableSearch onSearch={handleSearch} />
+      <DataTable
+        table={table}
+        actionBar={<AddressBookTableActionBar table={table} />}
+      >
+        <AddressBookTableSearch
+          onSearch={handleSearch}
+          onAddGroup={handleAddGroup}
+        />
       </DataTable>
-
       <AddressBookAddMembersDialog
         open={addMembersOpen}
         onOpenChange={setAddMembersOpen}

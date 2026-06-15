@@ -68,6 +68,13 @@ const router = createBrowserRouter([
                 ),
               },
               {
+                path: "address-book/:id",
+                element: withSuspense(
+                  () =>
+                    import("./pages/address-book/AddressBookDetailPage.tsx"),
+                ),
+              },
+              {
                 path: "unsubscribes",
                 element: withSuspense(
                   () => import("./pages/unsubscribes/UnsubscribesPage.tsx"),

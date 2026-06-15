@@ -2,7 +2,7 @@
   "defaultNumber": "0212345678",
   "defaultNumberLabel": "고객센터 대표번호",
   "maxCount": 30,
-  "normalCount": 0,
-  "reviewCount": 0,
-  "availableCount": 30
+  "normalCount": 10,
+  "reviewCount": 10,
+  "availableCount": 10
 }

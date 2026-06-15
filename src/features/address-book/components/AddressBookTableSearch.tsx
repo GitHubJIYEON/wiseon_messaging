@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PlusIcon, RefreshCw, Search } from "lucide-react";
+import { PlusIcon, Search } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
 import {
   Dialog,
@@ -12,18 +12,22 @@ import {
 } from "@/shared/components/ui/dialog";
 import { Field, FieldLabel } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
-import { Label } from "@/shared/components/ui/label";
+import { LoadingButton } from "@/shared/components/ui/loading-button";
 
 interface AddressBookTableSearchProps {
   onSearch: (value: string) => void;
+  onAddGroup: (groupName: string) => Promise<void>;
 }
 
 export default function AddressBookTableSearch({
   onSearch,
+  onAddGroup,
 }: AddressBookTableSearchProps) {
   const [inputValue, setInputValue] = useState("");
   const [groupName, setGroupName] = useState("");
   const [open, setOpen] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSearch = () => {
     onSearch(inputValue.trim());
@@ -33,12 +37,31 @@ export default function AddressBookTableSearch({
     if (e.key === "Enter") handleSearch();
   };
 
-  const handleAddGroup = () => {
-    console.log(groupName);
+  const handleOpenChange = (next: boolean) => {
+    if (!next) {
+      setGroupName("");
+      setError("");
+    }
+    setOpen(next);
   };
 
-  const handleOpenChange = (open: boolean) => {
-    setOpen(open);
+  const handleAddGroup = async () => {
+    const trimmed = groupName.trim();
+
+    if (!trimmed) {
+      setError("그룹명을 입력해주세요.");
+      return;
+    }
+
+    try {
+      setIsPending(true);
+      await onAddGroup(trimmed);
+      setOpen(false);
+      setGroupName("");
+      setError("");
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -60,7 +83,7 @@ export default function AddressBookTableSearch({
         </Button>
       </div>
 
-      {/* 버튼 */}
+      {/* 그룹 추가 다이얼로그 */}
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogTrigger asChild>
           <Button type="button" variant="default">
@@ -79,18 +102,28 @@ export default function AddressBookTableSearch({
               </FieldLabel>
               <Input
                 value={groupName}
-                onChange={(e) => setGroupName(e.target.value)}
+                onChange={(e) => {
+                  setGroupName(e.target.value);
+                  if (error) setError("");
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") void handleAddGroup();
+                }}
                 placeholder="주소록 그룹명을 입력해주세요."
               />
+              {error && <p className="text-sm text-red-500">{error}</p>}
             </Field>
           </div>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">취소</Button>
             </DialogClose>
-            <Button type="button" variant="dark" onClick={handleAddGroup}>
-              추가
-            </Button>
+            <LoadingButton
+              isLoading={isPending}
+              onClick={() => void handleAddGroup()}
+            >
+              추가하기
+            </LoadingButton>
           </DialogFooter>
         </DialogContent>
       </Dialog>

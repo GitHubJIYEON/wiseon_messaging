@@ -9,11 +9,11 @@ import type { CallingNumber, CallingNumberStatus } from "./types";
 
 const STATUS_STYLE: Record<
   CallingNumberStatus,
-  { label: string; variant: "green" | "blue" | "yellow" | "red" }
+  { label: string; variant: "green" | "blue" | "gray" | "red" }
 > = {
   정상: { label: "정상", variant: "green" },
   검수중: { label: "검수중", variant: "blue" },
-  만료: { label: "만료", variant: "yellow" },
+  만료: { label: "만료", variant: "gray" },
   반려: { label: "반려", variant: "red" },
 };
 
@@ -130,16 +130,7 @@ export function getCallingNumberColumns({
             className="flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {item.status === "만료" ? (
-              <Button
-                type="button"
-                variant="outline"
-                className="h-8 w-18 border-orange-300 px-3 text-[13px] text-orange-500 hover:bg-orange-50 hover:text-orange-500"
-                onClick={() => onRenew?.(item)}
-              >
-                인증 갱신
-              </Button>
-            ) : item.status === "반려" ? (
+            {item.status === "반려" ? (
               <Button
                 type="button"
                 variant="outline"
@@ -154,7 +145,7 @@ export function getCallingNumberColumns({
                 variant="outline"
                 className="h-8 w-18 px-3 text-[13px]"
                 onClick={() => onDetail?.(item)}
-                disabled={item.status === "검수중"}
+                disabled={item.status === "검수중" || item.status === "만료"}
               >
                 상세보기
               </Button>
