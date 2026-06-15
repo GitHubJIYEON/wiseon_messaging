@@ -437,10 +437,10 @@ function CallingNumberFormBody({
 
           {/* 안내 */}
           <div className="mt-4 rounded-md border bg-white p-4">
-            <p className="text-sm text-gray-800">첨부 파일 안내</p>
+            <p className="text-md text-gray-800">첨부 파일 안내</p>
             <ul className="mt-2 space-y-1 text-sm text-gray-600">
               <li>파일 형식: PDF, JPG, PNG</li>
-              <li>파일 용량: 4개 파일 총합 10MB 이하</li>
+              <li>파일 용량: 4개 파일의 총합 10MB 이하</li>
               <li>
                 서류 유효 기간
                 <ul className="mt-1 list-inside list-disc space-y-1 pl-4">
@@ -494,7 +494,7 @@ function CallingNumberFormBody({
               disabled={isSubmittingForm}
               isLoading={isSubmittingForm}
             >
-              등록 신청
+              신청하기
             </LoadingButton>
           </div>
         </div>
@@ -548,7 +548,7 @@ function TelNoField({
           <FormLabel className="sr-only">발신번호</FormLabel>
           <FormControl>
             <Input
-              placeholder="발신번호 (숫자만 입력)"
+              placeholder="통신 서비스 이용증명원 서류와 일치하는 전화번호 (ex. 0212345678)"
               inputMode="numeric"
               maxLength={TEL_NO_MAX}
               autoComplete="tel"

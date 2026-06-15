@@ -1,7 +1,8 @@
 // import AddressBookDetailTable from "@/features/address-book/components/AddressBookDetailTable";
-import { BookUser } from "lucide-react";
+// import { BookUser } from "lucide-react";
 import SampleTable from "@/features/address-book/components/SampleTable";
-import { Stats, StatsSummaryHeader } from "@/shared/components/ui/stats";
+
+// import { Stats, StatsSummaryHeader } from "@/shared/components/ui/stats";
 
 export default function AddressBookDetailPage() {
   return (

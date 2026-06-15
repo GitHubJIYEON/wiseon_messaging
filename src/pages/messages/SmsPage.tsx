@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Bell,
   Check,
   CircleAlert,
+  ImagePlus,
   MessageSquareTextIcon,
-  Plus,
+  Search,
+  Users,
+  X,
 } from "lucide-react";
+import { Badge } from "@/shared/components/ui/badge";
 import { Button } from "@/shared/components/ui/button";
 import { Calendar } from "@/shared/components/ui/calendar";
 import { Checkbox } from "@/shared/components/ui/checkbox";
 import {
-  Empty,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyMedia,
-  EmptyTitle,
-} from "@/shared/components/ui/empty";
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/shared/components/ui/dialog";
 import {
   Field,
   FieldContent,
@@ -26,11 +32,17 @@ import {
 } from "@/shared/components/ui/field";
 import { Input } from "@/shared/components/ui/input";
 import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupInput,
+} from "@/shared/components/ui/input-group";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/shared/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/shared/components/ui/radio-group";
+import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -60,22 +72,218 @@ const SendNumbder = [
   { value: "other", label: "기타", number: "02-6321-4141" },
 ];
 
-const RejectNumber = [
-  { value: "reject", label: "와이즈온 수신거부번호", number: "02-6321-4141" },
+const AddressBookGroups = [
   {
-    value: "more",
-    label: "신규",
-    number: "+ 수신거부번호 등록하기",
+    groupId: 1,
+    groupName: "VIP 고객",
+    description: "우선 안내가 필요한 주요 고객",
+    members: [
+      {
+        memberId: 101,
+        memberName: "홍길동",
+        phoneNumber: "010-1234-5678",
+        organization: "와이즈온",
+        position: "대표",
+      },
+      {
+        memberId: 102,
+        memberName: "김영희",
+        phoneNumber: "010-2222-3333",
+        organization: "서울지점",
+        position: "팀장",
+      },
+      {
+        memberId: 103,
+        memberName: "이철수",
+        phoneNumber: "010-4444-5555",
+        organization: "부산지점",
+        position: "매니저",
+      },
+    ],
+  },
+  {
+    groupId: 2,
+    groupName: "신규 가입자",
+    description: "최근 30일 이내 등록된 연락처",
+    members: [
+      {
+        memberId: 201,
+        memberName: "박민수",
+        phoneNumber: "010-5555-1111",
+        organization: "신규 고객",
+        position: "회원",
+      },
+      {
+        memberId: 202,
+        memberName: "최지은",
+        phoneNumber: "010-7777-2222",
+        organization: "신규 고객",
+        position: "회원",
+      },
+      {
+        memberId: 203,
+        memberName: "정다은",
+        phoneNumber: "010-8888-3333",
+        organization: "신규 고객",
+        position: "회원",
+      },
+      {
+        memberId: 204,
+        memberName: "윤성호",
+        phoneNumber: "010-9999-4444",
+        organization: "신규 고객",
+        position: "회원",
+      },
+    ],
+  },
+  {
+    groupId: 3,
+    groupName: "휴면 고객",
+    description: "재방문 안내 대상",
+    members: [
+      {
+        memberId: 301,
+        memberName: "강하늘",
+        phoneNumber: "010-1111-2222",
+        organization: "장기 미접속",
+        position: "회원",
+      },
+      {
+        memberId: 302,
+        memberName: "오서연",
+        phoneNumber: "010-3333-4444",
+        organization: "장기 미접속",
+        position: "회원",
+      },
+    ],
   },
 ];
 
+type AddressBookGroup = (typeof AddressBookGroups)[number];
+type AddressBookMember = AddressBookGroup["members"][number];
+
 export default function SmsPage() {
   const [open, setOpen] = useState(false);
+  const [addressBookOpen, setAddressBookOpen] = useState(false);
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [sendTiming, setSendTiming] = useState<"NOW" | "RESERVATION">("NOW");
-  const [rejectNumber, setRejectNumber] = useState<string>("02-1234-1234");
+  const [rejectNumber] = useState<string>("02-1234-1234");
   const [isAdvertising, setIsAdvertising] = useState<"COMM" | "AD">("COMM");
-  const [isLMS, setIsLMS] = useState(false);
+  const [messageType, setMessageType] = useState<"SMS" | "LMS">("LMS");
+  const [isMMS, setIsMMS] = useState(false);
+  const [isVariable, setIsVariable] = useState(true);
+  const [activeGroupId, setActiveGroupId] = useState(
+    AddressBookGroups[0].groupId,
+  );
+  const [addressBookKeyword, setAddressBookKeyword] = useState("");
+  const [selectedMemberIds, setSelectedMemberIds] = useState<number[]>([]);
+  const [draftMemberIds, setDraftMemberIds] = useState<number[]>([]);
+
+  const draftMemberIdSet = useMemo(
+    () => new Set(draftMemberIds),
+    [draftMemberIds],
+  );
+
+  const selectedMemberIdSet = useMemo(
+    () => new Set(selectedMemberIds),
+    [selectedMemberIds],
+  );
+
+  const filteredAddressBookGroups = useMemo(() => {
+    const keyword = addressBookKeyword.trim().toLowerCase();
+
+    if (!keyword) {
+      return AddressBookGroups;
+    }
+
+    return AddressBookGroups.filter((group) => {
+      const hasMatchedGroupName = group.groupName
+        .toLowerCase()
+        .includes(keyword);
+      const hasMatchedMember = group.members.some(
+        (member) =>
+          member.memberName.toLowerCase().includes(keyword) ||
+          member.phoneNumber.includes(keyword),
+      );
+
+      return hasMatchedGroupName || hasMatchedMember;
+    });
+  }, [addressBookKeyword]);
+
+  const activeGroup =
+    filteredAddressBookGroups.find(
+      (group) => group.groupId === activeGroupId,
+    ) ??
+    filteredAddressBookGroups[0] ??
+    AddressBookGroups[0];
+
+  const selectedMembers = useMemo(
+    () =>
+      AddressBookGroups.flatMap((group) =>
+        group.members
+          .filter((member) => selectedMemberIdSet.has(member.memberId))
+          .map((member) => ({ ...member, groupName: group.groupName })),
+      ),
+    [selectedMemberIdSet],
+  );
+
+  const draftMembers = useMemo(
+    () =>
+      AddressBookGroups.flatMap((group) =>
+        group.members
+          .filter((member) => draftMemberIdSet.has(member.memberId))
+          .map((member) => ({ ...member, groupName: group.groupName })),
+      ),
+    [draftMemberIdSet],
+  );
+
+  const selectedGroups = AddressBookGroups.filter((group) =>
+    group.members.some((member) => selectedMemberIdSet.has(member.memberId)),
+  );
+
+  function handleAddressBookOpenChange(nextOpen: boolean) {
+    if (nextOpen) {
+      setDraftMemberIds(selectedMemberIds);
+    }
+
+    setAddressBookOpen(nextOpen);
+  }
+
+  function handleToggleGroup(group: AddressBookGroup) {
+    const groupMemberIds = group.members.map((member) => member.memberId);
+    const isEveryMemberSelected = groupMemberIds.every((memberId) =>
+      draftMemberIdSet.has(memberId),
+    );
+
+    setDraftMemberIds((prev) => {
+      if (isEveryMemberSelected) {
+        return prev.filter((memberId) => !groupMemberIds.includes(memberId));
+      }
+
+      return Array.from(new Set([...prev, ...groupMemberIds]));
+    });
+  }
+
+  function handleToggleMember(member: AddressBookMember) {
+    setDraftMemberIds((prev) =>
+      prev.includes(member.memberId)
+        ? prev.filter((memberId) => memberId !== member.memberId)
+        : [...prev, member.memberId],
+    );
+  }
+
+  function handleConfirmAddressBook() {
+    setSelectedMemberIds(draftMemberIds);
+    setAddressBookOpen(false);
+  }
+
+  function handleRemoveSelectedGroup(group: AddressBookGroup) {
+    const groupMemberIds = group.members.map((member) => member.memberId);
+
+    setSelectedMemberIds((prev) =>
+      prev.filter((memberId) => !groupMemberIds.includes(memberId)),
+    );
+  }
 
   return (
     <section className="mx-auto mb-10 flex max-w-6xl flex-col gap-6">
@@ -225,21 +433,293 @@ export default function SmsPage() {
 
           <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={3} title="발송 대상 선택" />
-            <div></div>
-            <ul className="bg-point-gray-200 rounded-md border-gray-300 p-4">
-              <li className="flex items-center gap-2">
-                <Check className="size-4 text-[#46474c]" />
-                <p className="font-apple-medium text-sm text-[#46474c]">
-                  중복/수신거부 대상은 발송 시 자동 제외
-                </p>
-              </li>
-            </ul>
+            <div className="flex min-h-28 w-full flex-col justify-center rounded-md border border-dashed border-gray-300 bg-gray-50 p-4">
+              {selectedMembers.length > 0 ? (
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="font-apple-medium text-sm text-gray-700">
+                        주소록에서 불러온 수신자
+                      </p>
+                      <p className="text-sm text-gray-500">
+                        {selectedGroups[0]?.groupName}
+                        {selectedGroups.length > 1 &&
+                          ` 외 ${selectedGroups.length - 1}개 그룹`}{" "}
+                        / 총 {selectedMembers.length}명
+                      </p>
+                    </div>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setSelectedMemberIds([])}
+                    >
+                      전체 취소
+                    </Button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedGroups.map((group) => (
+                      <Badge
+                        key={group.groupId}
+                        variant="blue"
+                        className="gap-2 px-3 py-1"
+                      >
+                        {group.groupName}{" "}
+                        {
+                          group.members.filter((member) =>
+                            selectedMemberIdSet.has(member.memberId),
+                          ).length
+                        }
+                        명
+                        <button
+                          type="button"
+                          aria-label={`${group.groupName} 그룹 선택 취소`}
+                          onClick={() => handleRemoveSelectedGroup(group)}
+                        >
+                          <X className="size-3" />
+                        </button>
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center gap-2 text-center">
+                  <Users className="text-primary-500 size-6" />
+                  <p className="font-apple-medium text-sm text-gray-700">
+                    주소록 그룹 또는 연락처를 불러와 발송 대상을 구성하세요.
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    그룹 전체 선택 후 필요한 연락처만 제외할 수 있습니다.
+                  </p>
+                </div>
+              )}
+            </div>
+            <div className="flex flex-row justify-end gap-2">
+              <Dialog
+                open={addressBookOpen}
+                onOpenChange={handleAddressBookOpenChange}
+              >
+                <DialogTrigger asChild>
+                  <Button variant="outline">주소록 불러오기</Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-[1080px] p-0">
+                  <DialogHeader>
+                    <DialogTitle>주소록 불러오기</DialogTitle>
+                  </DialogHeader>
+                  <div className="flex flex-col gap-4 p-7">
+                    <div className="grid w-full grid-cols-[1fr_auto] gap-3">
+                      <InputGroup className="w-70">
+                        <InputGroupAddon>
+                          <Search className="size-4" />
+                        </InputGroupAddon>
+                        <InputGroupInput
+                          value={addressBookKeyword}
+                          onChange={(event) =>
+                            setAddressBookKeyword(event.target.value)
+                          }
+                          placeholder="그룹명, 이름, 전화번호 검색"
+                        />
+                      </InputGroup>
+                      {/* <div className="flex items-center gap-2 rounded-md border bg-gray-50 px-4 text-sm text-gray-600">
+                        <span>전체 {AddressBookGroups.length}개 그룹</span>
+                        <span className="text-gray-300">|</span>
+                        <span>{totalAddressBookMemberCount}명</span>
+                      </div> */}
+                    </div>
+
+                    <div className="grid min-h-[430px] grid-cols-[280px_1fr] overflow-hidden rounded-md border">
+                      <aside className="border-r bg-gray-50">
+                        <div className="flex items-center justify-between border-b px-4 py-4">
+                          <p className="font-apple-medium text-sm text-gray-700">
+                            주소록 그룹
+                          </p>
+                          <Badge variant="gray">
+                            선택 {draftMembers.length}명
+                          </Badge>
+                        </div>
+                        <ScrollArea className="h-[388px]">
+                          <div className="flex flex-col gap-2 p-3">
+                            {filteredAddressBookGroups.map((group) => {
+                              const groupMemberIds = group.members.map(
+                                (member) => member.memberId,
+                              );
+                              const selectedCount = groupMemberIds.filter(
+                                (memberId) => draftMemberIdSet.has(memberId),
+                              ).length;
+                              const isChecked =
+                                selectedCount === group.members.length;
+                              const isActive =
+                                activeGroup.groupId === group.groupId;
+
+                              return (
+                                <div
+                                  key={group.groupId}
+                                  role="button"
+                                  tabIndex={0}
+                                  onClick={() =>
+                                    setActiveGroupId(group.groupId)
+                                  }
+                                  onKeyDown={(event) => {
+                                    if (
+                                      event.key === "Enter" ||
+                                      event.key === " "
+                                    ) {
+                                      setActiveGroupId(group.groupId);
+                                    }
+                                  }}
+                                  className={`flex w-full flex-col gap-2 rounded-md border p-3 text-left transition ${
+                                    isActive
+                                      ? "border-primary-500 bg-white shadow-sm"
+                                      : "border-gray-400 bg-transparent hover:bg-white"
+                                  }`}
+                                >
+                                  <div className="flex items-start gap-3">
+                                    <Checkbox
+                                      checked={isChecked}
+                                      onClick={(event) =>
+                                        event.stopPropagation()
+                                      }
+                                      onCheckedChange={() =>
+                                        handleToggleGroup(group)
+                                      }
+                                      aria-label={`${group.groupName} 그룹 전체 선택`}
+                                    />
+                                    <div className="min-w-0 flex-1">
+                                      <div className="flex items-center justify-between gap-2">
+                                        <p className="font-apple-medium truncate text-sm text-gray-800">
+                                          {group.groupName}
+                                        </p>
+                                        <span className="text-xs text-gray-500">
+                                          {group.members.length}명
+                                        </span>
+                                      </div>
+                                      <p className="mt-1 line-clamp-1 text-xs text-gray-500">
+                                        {group.description}
+                                      </p>
+                                    </div>
+                                  </div>
+                                  {selectedCount > 0 && (
+                                    <p className="text-primary-600 pl-7 text-xs">
+                                      {selectedCount}명 선택됨
+                                    </p>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </ScrollArea>
+                      </aside>
+
+                      <div className="flex flex-col">
+                        <div className="flex items-center justify-between border-b px-4 py-3">
+                          <div>
+                            <p className="font-apple-medium text-sm text-gray-800">
+                              {activeGroup.groupName}
+                            </p>
+                          </div>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleToggleGroup(activeGroup)}
+                          >
+                            전체 선택/해제
+                          </Button>
+                        </div>
+                        <ScrollArea className="h-[388px]">
+                          <div className="divide-y">
+                            {activeGroup.members.map((member) => (
+                              <div
+                                key={member.memberId}
+                                role="button"
+                                tabIndex={0}
+                                onClick={() => handleToggleMember(member)}
+                                onKeyDown={(event) => {
+                                  if (
+                                    event.key === "Enter" ||
+                                    event.key === " "
+                                  ) {
+                                    handleToggleMember(member);
+                                  }
+                                }}
+                                className="flex cursor-pointer items-center gap-3 px-5 py-3 hover:bg-gray-50"
+                              >
+                                <Checkbox
+                                  checked={draftMemberIdSet.has(
+                                    member.memberId,
+                                  )}
+                                  onClick={(event) => event.stopPropagation()}
+                                  onCheckedChange={() =>
+                                    handleToggleMember(member)
+                                  }
+                                  aria-label={`${member.memberName} 연락처 선택`}
+                                />
+                                <div className="min-w-0 flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <p className="font-apple-medium text-sm text-gray-800">
+                                      {member.memberName}
+                                    </p>
+                                    <Badge variant="outline">
+                                      {member.position}
+                                    </Badge>
+                                  </div>
+                                  <p className="mt-1 text-xs text-gray-500">
+                                    {member.organization}
+                                  </p>
+                                </div>
+                                <p className="text-sm text-gray-700">
+                                  {member.phoneNumber}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </ScrollArea>
+                      </div>
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      onClick={() => setDraftMemberIds([])}
+                    >
+                      초기화
+                    </Button>
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline">
+                        취소
+                      </Button>
+                    </DialogClose>
+                    <Button
+                      type="button"
+                      onClick={handleConfirmAddressBook}
+                      disabled={draftMembers.length === 0}
+                    >
+                      명단 추가
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+              <Button variant="outline">직접 입력하기</Button>
+            </div>
           </div>
           <div className="flex flex-col gap-4 rounded-md bg-white p-7 shadow-sm">
             <StepHeader number={4} title="문자 내용 작성" />
             {/* 메시지 타입 - SMS, LMS */}
-            <RadioGroup defaultValue="SMS" className="flex">
-              <FieldLabel htmlFor="SMS" onClick={() => setIsLMS(true)}>
+            <RadioGroup
+              value={messageType}
+              onValueChange={(value) => {
+                if (value === "SMS" || value === "LMS") {
+                  setMessageType(value);
+                  setIsMMS(true); // MMS 를 체크박스로 하면 삭제
+                  if (value === "SMS") {
+                    setIsMMS(false);
+                  }
+                }
+              }}
+              className="flex"
+            >
+              <FieldLabel htmlFor="SMS">
                 <Field orientation="horizontal">
                   <RadioGroupItem value="SMS" id="SMS" />
                   <FieldContent>
@@ -248,7 +728,7 @@ export default function SmsPage() {
                   </FieldContent>
                 </Field>
               </FieldLabel>
-              <FieldLabel htmlFor="LMS" onClick={() => setIsLMS(false)}>
+              <FieldLabel htmlFor="LMS">
                 <Field orientation="horizontal">
                   <RadioGroupItem value="LMS" id="LMS" />
                   <FieldContent>
@@ -258,46 +738,45 @@ export default function SmsPage() {
                 </Field>
               </FieldLabel>
             </RadioGroup>
-
             {/* 이미지 첨부 파일 - MMS */}
-            {!isLMS && (
-              <div className="flex flex-row gap-3 border-dotted border-gray-300">
-                <Empty className="w-1/3 gap-0 border p-0">
-                  <EmptyHeader>
-                    <EmptyMedia
-                      variant="icon"
-                      className="bg-primary-500 size-8 rounded-full text-white"
-                    >
-                      <Plus className="size-4 text-white" />
-                    </EmptyMedia>
-                  </EmptyHeader>
-                  <EmptyTitle className="text-sm">이미지 (1/3)</EmptyTitle>
-                  <EmptyDescription>JPG, PNG, GIF</EmptyDescription>
-                </Empty>
-                <Empty className="gap-0 border p-0">
-                  <EmptyHeader>
-                    <EmptyMedia
-                      variant="icon"
-                      className="bg-primary-500 size-8 rounded-full text-white"
-                    >
-                      <Plus className="size-4 text-white" />
-                    </EmptyMedia>
-                  </EmptyHeader>
-                  <EmptyTitle className="text-sm">이미지 (2/3)</EmptyTitle>
-                  <EmptyDescription>JPG, PNG, GIF</EmptyDescription>
-                </Empty>
-                <Empty className="gap-0 border p-0">
-                  <EmptyHeader>
-                    <EmptyMedia
-                      variant="icon"
-                      className="bg-primary-500 size-8 rounded-full text-white"
-                    >
-                      <Plus className="size-4 text-white" />
-                    </EmptyMedia>
-                  </EmptyHeader>
-                  <EmptyTitle className="text-sm">이미지 (3/3)</EmptyTitle>
-                  <EmptyDescription>JPG, PNG, GIF</EmptyDescription>
-                </Empty>
+            {messageType === "LMS" && (
+              <div className="flex flex-col gap-2 rounded-md border border-gray-300 bg-gray-50 p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-row items-center gap-4">
+                    {/* <Checkbox
+                      id="MMS"
+                      checked={isMMS}
+                      onCheckedChange={(checked) => setIsMMS(checked === true)}
+                    /> */}
+                    <label htmlFor="MMS" className="flex items-center gap-4">
+                      <p className="font-apple-medium text-sm text-gray-700">
+                        MMS (이미지)
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        JPG, PNG, GIF 이미지를 최대 3개까지 첨부할 수 있습니다.
+                      </p>
+                    </label>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    {isMMS ? "0/3" : "미사용"}
+                  </p>
+                </div>
+
+                {isMMS && (
+                  <div className="grid grid-cols-3 gap-3">
+                    {[1, 2, 3].map((slot) => (
+                      <button
+                        key={slot}
+                        type="button"
+                        className="hover:border-primary-500 hover:text-primary-500 flex h-28 cursor-pointer flex-col items-center justify-center gap-2 rounded-md border border-dashed border-gray-300 bg-white text-gray-500"
+                      >
+                        <ImagePlus className="size-5" />
+                        <span className="text-sm">이미지 첨부</span>
+                        <span className="text-xs">({slot}/3)</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
             <FieldGroup className="gap-2">
@@ -327,7 +806,53 @@ export default function SmsPage() {
                 </FieldDescription>
               </Field>
             </FieldGroup>
-            <div className="bg-point-gray-100 rounded-md border p-4">
+            {/* 변수 사용 */}
+            <div className="flex flex-col gap-2 rounded-md border border-gray-300 p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-row items-center gap-4">
+                  <Checkbox
+                    id="variable"
+                    checked={isVariable}
+                    onCheckedChange={(checked) =>
+                      setIsVariable(checked === true)
+                    }
+                  />
+                  <label htmlFor="variable" className="flex items-center gap-4">
+                    <p className="font-apple-medium text-sm text-gray-700">
+                      변수 사용하기
+                    </p>
+                    <p className="text-xs text-gray-600">
+                      변수를 사용하면 고객별로 맞춤 메시지를 보낼 수 있어요
+                    </p>
+                  </label>
+                </div>
+              </div>
+              {isVariable && (
+                <div className="flex flex-col gap-2">
+                  <ul className="bg-point-gray-100 flex flex-wrap gap-2 rounded-md border border-dashed px-6 py-2">
+                    <li>
+                      <Button
+                        variant="outline"
+                        className="border-primary-500 text-primary-500 hover:text-primary-500 rounded-full hover:bg-white"
+                      >
+                        #{"이름"}
+                      </Button>
+                    </li>
+                    <li>
+                      <Button variant="outline" className="rounded-full">
+                        #{"생년월일"}
+                      </Button>
+                    </li>
+                    <li>
+                      <Button variant="outline" className="rounded-full">
+                        #{"이메일"}
+                      </Button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+            <div className="bg-point-gray-100 rounded-md border border-gray-300 p-4">
               <p className="font-apple-medium text-sm text-gray-700">
                 사용 가능한 변수
               </p>
@@ -363,6 +888,14 @@ export default function SmsPage() {
                 <p className="font-apple-medium text-sm text-[#46474c]">
                   <strong>변수</strong>를 사용하면 고객별로 맞춤 메시지를 보낼
                   수 있어요
+                </p>
+              </li>
+            </ul>{" "}
+            <ul className="bg-point-gray-200 rounded-md border-gray-300 p-4">
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-[#46474c]" />
+                <p className="font-apple-medium text-sm text-[#46474c]">
+                  중복/수신거부 대상은 발송 시 자동 제외
                 </p>
               </li>
             </ul>
