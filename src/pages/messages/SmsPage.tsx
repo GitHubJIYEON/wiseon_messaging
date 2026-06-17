@@ -717,7 +717,7 @@ export default function SmsPage() {
                   }
                 }
               }}
-              className="flex"
+              className="flex flex-row"
             >
               <FieldLabel htmlFor="SMS">
                 <Field orientation="horizontal">

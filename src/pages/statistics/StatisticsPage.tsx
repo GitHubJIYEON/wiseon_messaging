@@ -20,12 +20,12 @@ const periodOptions: { label: string; value: PeriodFilter }[] = [
   { label: "3개월", value: "3month" },
 ];
 
-const messageTypeOptions: { label: string; value: MessageTypeFilter }[] = [
-  { label: "전체", value: "all" },
-  { label: "SMS", value: "SMS" },
-  { label: "LMS", value: "LMS" },
-  { label: "MMS", value: "MMS" },
-];
+// const messageTypeOptions: { label: string; value: MessageTypeFilter }[] = [
+//   { label: "전체", value: "all" },
+//   { label: "SMS", value: "SMS" },
+//   { label: "LMS", value: "LMS" },
+//   { label: "MMS", value: "MMS" },
+// ];
 
 const dailySendData = [
   { date: "04.21", success: 1280, failed: 42 },
@@ -256,13 +256,13 @@ export default function StatisticsPage() {
   );
 
   return (
-    <section className="mx-auto mb-10 flex max-w-6xl flex-col gap-6">
+    <section className="mx-auto mb-10 flex max-w-6xl flex-col gap-4">
       <h1 className="mt-8 text-center text-2xl">통계</h1>
       {/* <p className="font-apple-light mt-2 text-[16px] leading-6 text-gray-500">
           기간별 발송 성과와 실패 원인을 분석합니다.
         </p> */}
 
-      <div className="mb-6 rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+      <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="bg-primary-50 text-primary flex size-10 items-center justify-center rounded-full">
@@ -299,7 +299,7 @@ export default function StatisticsPage() {
               ))}
             </div>
 
-            <select
+            {/* <select
               value={selectedMessageType}
               className="font-apple-medium focus:border-primary h-[42px] rounded-lg border border-gray-300 bg-white px-4 text-[14px] text-gray-700 outline-none"
               onChange={(event) =>
@@ -311,11 +311,11 @@ export default function StatisticsPage() {
                   {option.label}
                 </option>
               ))}
-            </select>
+            </select> */}
           </div>
         </div>
       </div>
-
+      {/* 
       <div className="grid grid-cols-4 gap-4">
         {kpiCards.map((card) => {
           const Icon = card.icon;
@@ -351,7 +351,7 @@ export default function StatisticsPage() {
             </article>
           );
         })}
-      </div>
+      </div> */}
 
       <div className="mt-6 grid grid-cols-[1fr_380px] gap-6">
         <section className="rounded-xl border border-gray-200 bg-white p-7 shadow-sm">
