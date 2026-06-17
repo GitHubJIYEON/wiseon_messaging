@@ -32,10 +32,10 @@ interface MenuItem {
 const MENU_ICONS = {
   dashboard: <LayoutDashboardIcon size={18} />,
   messages: <SendIcon size={18} />,
-  "address-book": <FileTextIcon size={18} />,
+  "address-books": <FileTextIcon size={18} />,
   unsubscribes: <PhoneOffIcon size={18} />,
   "message-results": <MailCheck size={18} />,
-  "calling-number": <PhoneIcon size={18} />,
+  "calling-numbers": <PhoneIcon size={18} />,
   statistics: <PieChartIcon size={18} />,
 };
 
@@ -53,25 +53,19 @@ const MENU_ITEMS: MenuItem[] = [
     defaultPath: "/messages/sms",
     subMenus: [
       { path: "/messages/sms", label: "문자 보내기" },
-      // { path: "/messages/alimtalk", label: "알림톡 보내기" },
+      { path: "/messages/alimtalk", label: "알림톡 보내기" },
     ],
   },
   {
-    id: "address-book",
+    id: "address-books",
     label: "주소록",
-    icon: "address-book",
-    defaultPath: "/address-book",
+    icon: "address-books",
+    defaultPath: "/address-books",
     subMenus: [
-      { path: "/address-book", label: "주소록 관리" },
+      { path: "/address-books", label: "주소록 관리" },
       { path: "/unsubscribes", label: "수신거부 관리" },
     ],
   },
-  // {
-  //   id: "unsubscribes",
-  //   label: "수신거부 관리",
-  //   icon: "unsubscribes",
-  //   defaultPath: "/unsubscribes",
-  // },
   {
     id: "message-results",
     label: "발송 결과",
@@ -79,13 +73,13 @@ const MENU_ITEMS: MenuItem[] = [
     defaultPath: "/message-results",
   },
   {
-    id: "calling-number",
+    id: "calling-numbers",
     label: "발신 번호",
-    icon: "calling-number",
-    defaultPath: "/calling-number/list",
+    icon: "calling-numbers",
+    defaultPath: "/calling-numbers/list",
     subMenus: [
-      { path: `/calling-number/list`, label: "발신 번호 관리" },
-      { path: "/calling-number/new", label: "발신 번호 신청" },
+      { path: "/calling-numbers/list", label: "발신 번호 관리" },
+      { path: "/calling-numbers/new", label: "발신 번호 등록" },
     ],
   },
   {
@@ -103,7 +97,7 @@ export default function ServiceLayout() {
         <section className="flex min-h-0 flex-1">
           <ServiceSidebar />
 
-          <div className="min-h-0 flex-1 overflow-y-auto bg-[#fafafa] px-8">
+          <div className="w-full flex-1 overflow-auto bg-[#fafafa]">
             <Outlet />
           </div>
         </section>
@@ -150,7 +144,7 @@ function ServiceSidebar() {
   };
 
   return (
-    <aside className="flex w-[300px] flex-col gap-1 overflow-y-auto border-r border-gray-400 p-5">
+    <aside className="flex w-[300px] flex-col gap-1 border-r border-gray-400 p-5">
       {MENU_ITEMS.map((item) =>
         item.subMenus ? (
           <MenuSection

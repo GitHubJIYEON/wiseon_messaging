@@ -7,7 +7,7 @@ const STEP = {
   FORM: "form",
 } as const;
 
-export default function CallingNumberNewPage() {
+export default function CallingNumbersNewPage() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const step = searchParams.get("step") ?? STEP.GUIDE;

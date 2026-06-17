@@ -1,0 +1,76 @@
+{
+  "statusCode": "202",
+  "statusName": "success",
+  "messages": [
+    {
+      "requestId": "RSSA-1776399395273-6363-30722-DfplFSbg",
+      "messageId": "ac06ea44-a525-41f0-8e3a-e71e1988df47",
+      "requestTime": 1776399395000,
+      "contentType": "COMM",
+      "type": "SMS",
+      "countryCode": "82",
+      "from": "025585144",
+      "to": "01024328242",
+      "completeTime": 1776399399000,
+      "telcoCode": "LGT",
+      "status": "COMPLETED",
+      "statusCode": "0",
+      "statusName": "success",
+      "statusMessage": "성공"
+    },
+    {
+      "requestId": "RSSA-1776399395273-6363-30722-DfplFSbg",
+      "messageId": "8e6ce617-8aa8-41ca-8794-416e464b2b60",
+      "requestTime": 1776399395000,
+      "contentType": "COMM",
+      "type": "SMS",
+      "countryCode": "82",
+      "from": "025585144",
+      "to": "01085822954",
+      "completeTime": 1776399399000,
+      "telcoCode": "SKT",
+      "status": "COMPLETED",
+      "statusCode": "0",
+      "statusName": "success",
+      "statusMessage": "성공"
+    },
+    {
+      "requestId": "RSSA-1776399395273-6363-30722-DfplFSbg",
+      "messageId": "5ba4f9d0-9557-4b42-9c58-c8d64ea39d1d",
+      "requestTime": 1776399395000,
+      "contentType": "COMM",
+      "type": "SMS",
+      "countryCode": "82",
+      "from": "025585144",
+      "to": "01093004697",
+      "completeTime": 1776399401000,
+      "telcoCode": "LGT",
+      "status": "COMPLETED",
+      "statusCode": "0",
+      "statusName": "success",
+      "statusMessage": "성공"
+    },
+    {
+      "requestId": "RSSA-1776399395273-6363-30722-DfplFSbg",
+      "messageId": "324bb602-d8c5-42fd-b43d-9f46c87cb4e9",
+      "requestTime": 1776399395000,
+      "contentType": "COMM",
+      "type": "SMS",
+      "countryCode": "82",
+      "from": "025585144",
+      "to": "01086761088",
+      "completeTime": 1776399401000,
+      "telcoCode": "KTF",
+      "status": "COMPLETED",
+      "statusCode": "3014",
+      "statusName": "fail",
+      "statusMessage": "기타"
+    }
+  ],
+  "pageIndex": 0,
+  "pageSize": 20,
+  "totalCount": 4,
+  "itemCount": 4,
+  "hasMore": false
+}
+        

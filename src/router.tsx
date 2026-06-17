@@ -62,18 +62,19 @@ const router = createBrowserRouter([
               },
 
               {
-                path: "address-book",
+                path: "address-books",
                 element: withSuspense(
-                  () => import("./pages/address-book/AddressBookPage.tsx"),
+                  () => import("./pages/address-books/AddressBooksPage.tsx"),
                 ),
               },
               {
-                path: "address-book/:id",
+                path: "address-books/:id",
                 element: withSuspense(
                   () =>
-                    import("./pages/address-book/AddressBookDetailPage.tsx"),
+                    import("./pages/address-books/AddressBooksDetailPage.tsx"),
                 ),
               },
+
               {
                 path: "unsubscribes",
                 element: withSuspense(
@@ -95,6 +96,7 @@ const router = createBrowserRouter([
                     import("./pages/message-results/MessageResultsDetailPage.tsx"),
                 ),
               },
+
               {
                 path: "statistics",
                 element: withSuspense(
@@ -102,16 +104,17 @@ const router = createBrowserRouter([
                 ),
               },
               {
-                path: "calling-number/list",
+                path: "calling-numbers/list",
                 element: withSuspense(
-                  () => import("./pages/calling-number/CallingNumberPage.tsx"),
+                  () =>
+                    import("./pages/calling-numbers/CallingNumbersPage.tsx"),
                 ),
               },
               {
-                path: "calling-number/new",
+                path: "calling-numbers/new",
                 element: withSuspense(
                   () =>
-                    import("./pages/calling-number/CallingNumberNewPage.tsx"),
+                    import("./pages/calling-numbers/CallingNumbersNewPage.tsx"),
                 ),
               },
             ],
