@@ -484,9 +484,9 @@ function CallingNumberFormBody({
               variant="outline"
               className="h-[44px] min-w-[100px]"
               disabled={isSubmittingForm}
-              onClick={() => navigate("/calling-number/new")}
+              onClick={() => navigate("/calling-numbers/new")}
             >
-              취소
+              이전
             </Button>
             <LoadingButton
               type="submit"
