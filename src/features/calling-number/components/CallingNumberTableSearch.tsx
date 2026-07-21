@@ -46,7 +46,7 @@ export default function CallingNumberTableSearch({
       <Button
         type="button"
         variant="default"
-        onClick={() => void navigate("/calling-number/new")}
+        onClick={() => void navigate("/calling-numbers/new")}
       >
         발신번호 등록
       </Button>

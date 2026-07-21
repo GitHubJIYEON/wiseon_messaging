@@ -31,7 +31,6 @@ const inputClassName =
 
 type EditableField = keyof Pick<
   AddressBookMember,
-  | "memberName"
   | "phoneNumber"
   | "position"
   | "organization"
@@ -56,13 +55,6 @@ interface EditColumnDef {
 }
 
 const DEFAULT_EDIT_COLUMNS: EditColumnDef[] = [
-  {
-    id: "memberName",
-    key: "memberName",
-    label: "이름",
-    placeholder: "이름",
-    removable: false,
-  },
   {
     id: "phoneNumber",
     key: "phoneNumber",
@@ -151,13 +143,6 @@ function createEmptyMember(
 
 const columns: ColumnDef<AddressBookMember>[] = [
   {
-    id: "memberName",
-    header: "이름",
-    accessorKey: "memberName",
-    size: 120,
-    cell: ({ row }) => <div>{row.original.memberName}</div>,
-  },
-  {
     id: "phoneNumber",
     header: "전화번호",
     accessorKey: "phoneNumber",
@@ -198,20 +183,6 @@ const columns: ColumnDef<AddressBookMember>[] = [
     accessorKey: "variables3",
     size: 120,
     cell: ({ row }) => <div>{row.original.variables3 || "-"}</div>,
-  },
-  {
-    id: "isBlocked",
-    header: "수신거부",
-    accessorKey: "isBlocked",
-    size: 80,
-    cell: ({ row }) => <div>{row.original.isBlocked ? "Y" : "N"}</div>,
-  },
-  {
-    id: "memberComment",
-    header: "메모",
-    accessorKey: "memberComment",
-    size: 160,
-    cell: ({ row }) => <div>{row.original.memberComment || "-"}</div>,
   },
 ];
 

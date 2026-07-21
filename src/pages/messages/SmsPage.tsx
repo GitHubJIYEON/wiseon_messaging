@@ -52,6 +52,12 @@ import {
   SelectValue,
 } from "@/shared/components/ui/select";
 import { StepHeader } from "@/shared/components/ui/step-header";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/shared/components/ui/tabs";
 import { Textarea } from "@/shared/components/ui/textarea";
 import {
   TimePicker,
@@ -159,8 +165,95 @@ const AddressBookGroups = [
   },
 ];
 
+const VariableList = [
+  "번호",
+  "이름",
+  "소속",
+  "변수1",
+  "변수2",
+  "변수3",
+  "변수4",
+  "변수5",
+];
 type AddressBookGroup = (typeof AddressBookGroups)[number];
 type AddressBookMember = AddressBookGroup["members"][number];
+
+const SavedTemplates = [
+  {
+    id: 1,
+    title: "공지사항 기본",
+    content:
+      "안녕하세요. 고객님께 중요한 공지사항을 안내드립니다. 자세한 내용은 홈페이지를 확인해 주세요.  자세한 내용은 홈페이지를 확인해 주세요. 자세한 내용은 홈페이지를 확인해 주세요. 자세한 내용은 홈페이지를 확인해 주세요. 자세한 내용은 홈페이지를 확인해 주세요. 자세한 내용은 홈페이지를 확인해 주세요. 자세한 내용은 홈페이지를 확인해 주세요. 자세한 내용은 홈페이지를 확인해 주세요.",
+    savedAt: "2026.06.20",
+  },
+  {
+    id: 2,
+    title: "이벤트 안내",
+    content:
+      "안녕하세요! 특별 이벤트를 진행합니다. 기간 내 참여 시 혜택을 드립니다. 많은 관심 부탁드립니다.",
+    savedAt: "2026.06.18",
+  },
+  {
+    id: 3,
+    title: "예약 확인",
+    content:
+      "예약이 완료되었습니다. 예약 일시: [날짜] / 장소: [장소]. 문의사항은 고객센터로 연락 주세요.",
+    savedAt: "2026.06.15",
+  },
+  {
+    id: 4,
+    title: "배송 안내",
+    content:
+      "주문하신 상품이 발송되었습니다. 배송 조회는 홈페이지에서 확인하실 수 있습니다.",
+    savedAt: "2026.06.10",
+  },
+  {
+    id: 5,
+    title: "만족도 조사",
+    content:
+      "고객님의 소중한 의견을 부탁드립니다. 아래 링크를 통해 만족도 조사에 참여해 주세요.",
+    savedAt: "2026.06.05",
+  },
+];
+
+const RecentTemplates = [
+  {
+    id: 101,
+    title: "6월 정기 점검 안내",
+    content:
+      "안녕하세요. 6월 정기 시스템 점검이 예정되어 있습니다. 점검 시간: 06/25 02:00~04:00. 이용에 불편을 드려 죄송합니다.",
+    sentAt: "2026.06.22",
+    recipientCount: 1240,
+  },
+  {
+    id: 102,
+    title: "여름 세일 이벤트",
+    content:
+      "안녕하세요! 여름 특별 세일을 진행합니다. 6/20~6/30까지 전 상품 최대 30% 할인! 지금 바로 확인하세요.",
+    sentAt: "2026.06.19",
+    recipientCount: 3850,
+  },
+  {
+    id: 103,
+    title: "신규 서비스 오픈 안내",
+    content:
+      "와이즈온 메시지 서비스가 새롭게 업데이트되었습니다. 더 빠르고 편리해진 서비스를 이용해 보세요.",
+    sentAt: "2026.06.12",
+    recipientCount: 520,
+  },
+  {
+    id: 104,
+    title: "회원 가입 감사 메시지",
+    content:
+      "회원가입을 축하드립니다! 첫 이용 고객님께 특별 쿠폰을 드립니다. 마이페이지에서 확인해 주세요.",
+    sentAt: "2026.06.08",
+    recipientCount: 87,
+  },
+];
+
+type SavedTemplate = (typeof SavedTemplates)[number];
+type RecentTemplate = (typeof RecentTemplates)[number];
+type MessageTemplate = SavedTemplate | RecentTemplate;
 
 export default function SmsPage() {
   const [open, setOpen] = useState(false);
@@ -178,6 +271,14 @@ export default function SmsPage() {
   const [addressBookKeyword, setAddressBookKeyword] = useState("");
   const [selectedMemberIds, setSelectedMemberIds] = useState<number[]>([]);
   const [draftMemberIds, setDraftMemberIds] = useState<number[]>([]);
+  const [savedTemplateList, setSavedTemplateList] = useState(SavedTemplates);
+  const [templateOpen, setTemplateOpen] = useState(false);
+  const [templateTab, setTemplateTab] = useState<"saved" | "recent">("saved");
+  const [templateKeyword, setTemplateKeyword] = useState("");
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<MessageTemplate | null>(null);
+  const [saveTemplateOpen, setSaveTemplateOpen] = useState(false);
+  const [saveTemplateName, setSaveTemplateName] = useState("");
 
   const draftMemberIdSet = useMemo(
     () => new Set(draftMemberIds),
@@ -275,6 +376,42 @@ export default function SmsPage() {
   function handleConfirmAddressBook() {
     setSelectedMemberIds(draftMemberIds);
     setAddressBookOpen(false);
+  }
+
+  const filteredSavedTemplates = useMemo(() => {
+    const keyword = templateKeyword.trim().toLowerCase();
+    if (!keyword) return savedTemplateList;
+    return savedTemplateList.filter(
+      (t) =>
+        t.title.toLowerCase().includes(keyword) ||
+        t.content.toLowerCase().includes(keyword),
+    );
+  }, [templateKeyword, savedTemplateList]);
+
+  function handleDeleteSavedTemplate(id: number) {
+    setSavedTemplateList((prev) => prev.filter((t) => t.id !== id));
+    if (selectedTemplate?.id === id) setSelectedTemplate(null);
+  }
+
+  const filteredRecentTemplates = useMemo(() => {
+    const keyword = templateKeyword.trim().toLowerCase();
+    if (!keyword) return RecentTemplates;
+    return RecentTemplates.filter(
+      (t) =>
+        t.title.toLowerCase().includes(keyword) ||
+        t.content.toLowerCase().includes(keyword),
+    );
+  }, [templateKeyword]);
+
+  function handleConfirmTemplate() {
+    setTemplateOpen(false);
+    setTemplateKeyword("");
+  }
+
+  function handleSaveTemplate() {
+    // TODO: API 연동
+    setSaveTemplateOpen(false);
+    setSaveTemplateName("");
   }
 
   function handleRemoveSelectedGroup(group: AddressBookGroup) {
@@ -801,13 +938,273 @@ export default function SmsPage() {
                   placeholder="내용을 입력해주세요"
                   className="h-24 resize-none"
                 />
-                <FieldDescription>
+                {/* <FieldDescription>
                   변수는 실제 발송 시 수신자 데이터로 치환됩니다.
-                </FieldDescription>
+                </FieldDescription> */}
               </Field>
             </FieldGroup>
+            {/* 문구 불러오기 , 문구 저장 */}
+            <div className="flex justify-end gap-2">
+              {/* 문구 불러오기 */}
+              <Dialog
+                open={templateOpen}
+                onOpenChange={(next) => {
+                  setTemplateOpen(next);
+                  if (!next) {
+                    setTemplateKeyword("");
+                    setSelectedTemplate(null);
+                    setTemplateTab("saved");
+                  }
+                }}
+              >
+                <DialogTrigger asChild>
+                  <Button type="button" variant="outline">
+                    문구 불러오기
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl p-0">
+                  <DialogHeader>
+                    <DialogTitle>문구 불러오기</DialogTitle>
+                  </DialogHeader>
+
+                  <Tabs
+                    value={templateTab}
+                    onValueChange={(v) => {
+                      setTemplateTab(v as "saved" | "recent");
+                      setSelectedTemplate(null);
+                      setTemplateKeyword("");
+                    }}
+                    className="flex flex-col gap-0"
+                  >
+                    {/* 탭 + 검색바 */}
+                    <div className="flex flex-col gap-3 border-b px-6 pt-2 pb-4">
+                      <TabsList className="w-fit">
+                        <TabsTrigger value="saved">저장 문구</TabsTrigger>
+                        <TabsTrigger value="recent">최근 발송 문구</TabsTrigger>
+                      </TabsList>
+                      <InputGroup className="w-full">
+                        <InputGroupAddon>
+                          <Search className="size-4 text-gray-400" />
+                        </InputGroupAddon>
+                        <InputGroupInput
+                          value={templateKeyword}
+                          onChange={(e) => setTemplateKeyword(e.target.value)}
+                          placeholder="제목 또는 내용으로 검색"
+                        />
+                      </InputGroup>
+                    </div>
+
+                    {/* 저장 문구 탭 */}
+                    <TabsContent value="saved">
+                      <ScrollArea className="h-[340px]">
+                        {filteredSavedTemplates.length === 0 ? (
+                          <div className="flex h-[300px] items-center justify-center">
+                            <p className="text-sm text-gray-400">
+                              검색 결과가 없습니다.
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-3 gap-3 bg-gray-100 p-5">
+                            {filteredSavedTemplates.map((template) => {
+                              const isSelected =
+                                selectedTemplate?.id === template.id;
+                              return (
+                                <div
+                                  key={template.id}
+                                  className={`relative flex flex-col rounded-lg border p-3 transition-all ${
+                                    isSelected
+                                      ? "border-primary-400 bg-primary-50 shadow-sm"
+                                      : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm"
+                                  }`}
+                                >
+                                  {isSelected && (
+                                    <span className="bg-primary-500 absolute top-2 right-2 flex size-4 items-center justify-center rounded-full">
+                                      <Check className="size-2.5 text-white" />
+                                    </span>
+                                  )}
+                                  <p
+                                    className={`font-apple-medium pr-5 text-[15px] leading-snug ${
+                                      isSelected
+                                        ? "text-primary-700"
+                                        : "text-gray-800"
+                                    }`}
+                                  >
+                                    {template.title}
+                                  </p>
+                                  <p className="mt-2 line-clamp-3 h-[68px] text-[14px] leading-relaxed text-gray-500">
+                                    {template.content}
+                                  </p>
+                                  <p className="mt-1 text-[11px] text-gray-400">
+                                    {template.savedAt}
+                                  </p>
+                                  <div className="mt-3 flex gap-2">
+                                    <Button
+                                      type="button"
+                                      size="sm"
+                                      variant={
+                                        isSelected ? "default" : "outline"
+                                      }
+                                      className="h-7 flex-1 text-xs"
+                                      onClick={() =>
+                                        setSelectedTemplate(template)
+                                      }
+                                    >
+                                      {isSelected ? "선택됨" : "선택"}
+                                    </Button>
+                                    <Button
+                                      type="button"
+                                      size="sm"
+                                      variant="outline"
+                                      className="h-7 text-xs hover:border-red-300 hover:bg-red-50 hover:text-red-500"
+                                      onClick={() =>
+                                        handleDeleteSavedTemplate(template.id)
+                                      }
+                                    >
+                                      삭제
+                                    </Button>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </ScrollArea>
+                    </TabsContent>
+
+                    {/* 최근 발송 문구 탭 */}
+                    <TabsContent value="recent">
+                      <ScrollArea className="h-[340px]">
+                        {filteredRecentTemplates.length === 0 ? (
+                          <div className="flex h-[300px] items-center justify-center">
+                            <p className="text-sm text-gray-400">
+                              검색 결과가 없습니다.
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="grid grid-cols-3 gap-3 p-5">
+                            {filteredRecentTemplates.map((template) => {
+                              const isSelected =
+                                selectedTemplate?.id === template.id;
+                              return (
+                                <div
+                                  key={template.id}
+                                  role="button"
+                                  tabIndex={0}
+                                  onClick={() => setSelectedTemplate(template)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                      setSelectedTemplate(template);
+                                    }
+                                  }}
+                                  className={`relative flex cursor-pointer flex-col rounded-lg border p-3 transition-all ${
+                                    isSelected
+                                      ? "border-primary-400 bg-primary-50 shadow-sm"
+                                      : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm"
+                                  }`}
+                                >
+                                  {isSelected && (
+                                    <span className="bg-primary-500 absolute top-2 right-2 flex size-4 items-center justify-center rounded-full">
+                                      <Check className="size-2.5 text-white" />
+                                    </span>
+                                  )}
+                                  <p
+                                    className={`font-apple-medium pr-5 text-[13px] leading-snug ${
+                                      isSelected
+                                        ? "text-primary-700"
+                                        : "text-gray-800"
+                                    }`}
+                                  >
+                                    {template.title}
+                                  </p>
+                                  <p className="mt-2 line-clamp-3 flex-1 text-[11px] leading-relaxed text-gray-500">
+                                    {template.content}
+                                  </p>
+                                  <div className="mt-3 flex items-center justify-between">
+                                    <div className="flex items-center gap-1">
+                                      <Users className="size-3 text-gray-400" />
+                                      <span className="text-[11px] text-gray-400">
+                                        {template.recipientCount.toLocaleString()}
+                                        명
+                                      </span>
+                                    </div>
+                                    <p className="text-[11px] text-gray-400">
+                                      {template.sentAt}
+                                    </p>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </ScrollArea>
+                    </TabsContent>
+                  </Tabs>
+
+                  <DialogFooter className="border-t px-6 py-4">
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline">
+                        취소
+                      </Button>
+                    </DialogClose>
+                    <Button
+                      type="button"
+                      disabled={!selectedTemplate}
+                      onClick={handleConfirmTemplate}
+                    >
+                      불러오기
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+
+              {/* 문구 저장 */}
+              <Dialog
+                open={saveTemplateOpen}
+                onOpenChange={(next) => {
+                  setSaveTemplateOpen(next);
+                  if (!next) setSaveTemplateName("");
+                }}
+              >
+                <DialogTrigger asChild>
+                  <Button type="button" variant="outline">
+                    문구 저장
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-sm">
+                  <DialogHeader>
+                    <DialogTitle>문구 저장</DialogTitle>
+                  </DialogHeader>
+                  <div className="px-7 py-4">
+                    <p className="mb-2 text-sm text-gray-600">
+                      현재 작성된 내용을 문구로 저장합니다.
+                    </p>
+                    <Input
+                      placeholder="문구 제목을 입력해주세요"
+                      value={saveTemplateName}
+                      onChange={(e) => setSaveTemplateName(e.target.value)}
+                      maxLength={50}
+                    />
+                  </div>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline">
+                        취소
+                      </Button>
+                    </DialogClose>
+                    <Button
+                      type="button"
+                      disabled={!saveTemplateName.trim()}
+                      onClick={handleSaveTemplate}
+                    >
+                      저장
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </div>
+
             {/* 변수 사용 */}
-            <div className="flex flex-col gap-2 rounded-md border border-gray-300 p-4">
+            {/* <div className="flex flex-col gap-2 rounded-md border border-gray-300 p-4">
               <div className="flex items-center justify-between">
                 <div className="flex flex-row items-center gap-4">
                   <Checkbox
@@ -851,7 +1248,7 @@ export default function SmsPage() {
                   </ul>
                 </div>
               )}
-            </div>
+            </div> */}
             <div className="bg-point-gray-100 rounded-md border border-gray-300 p-4">
               <p className="font-apple-medium text-sm text-gray-700">
                 사용 가능한 변수
@@ -860,29 +1257,26 @@ export default function SmsPage() {
                 <p className="font-apple-medium text-sm text-gray-600">
                   변수를 클릭하면 치환된 결과가 미리보기에 표시됩니다.
                 </p>
-                <ul className="flex flex-wrap gap-2">
-                  <li>
+                <ul className="flex flex-wrap justify-center gap-2">
+                  {/* <li>
                     <Button
                       variant="outline"
                       className="border-primary-500 text-primary-500 hover:text-primary-500 rounded-full hover:bg-white"
                     >
-                      #{"이름"}
+                      #{"번호"}
                     </Button>
-                  </li>
-                  <li>
-                    <Button variant="outline" className="rounded-full">
-                      #{"생년월일"}
-                    </Button>
-                  </li>
-                  <li>
-                    <Button variant="outline" className="rounded-full">
-                      #{"이메일"}
-                    </Button>
-                  </li>
+                  </li> */}
+                  {VariableList.map((variable) => (
+                    <li key={variable}>
+                      <Button variant="outline" className="rounded-full">
+                        {"# " + variable}
+                      </Button>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
-            <ul className="rounded-md border-gray-300 bg-yellow-50 p-4">
+            {/* <ul className="rounded-md border-gray-300 bg-yellow-50 p-4">
               <li className="flex items-center gap-2">
                 <Check className="size-4 text-[#46474c]" />
                 <p className="font-apple-medium text-sm text-[#46474c]">
@@ -890,12 +1284,26 @@ export default function SmsPage() {
                   수 있어요
                 </p>
               </li>
-            </ul>{" "}
+            </ul>{" "} */}
             <ul className="bg-point-gray-200 rounded-md border-gray-300 p-4">
               <li className="flex items-center gap-2">
                 <Check className="size-4 text-[#46474c]" />
                 <p className="font-apple-medium text-sm text-[#46474c]">
-                  중복/수신거부 대상은 발송 시 자동 제외
+                  <strong>변수</strong>를 사용하면 고객별로 맞춤 메시지를 보낼
+                  수 있어요
+                </p>
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-[#46474c]" />
+                <p className="font-apple-medium text-sm text-[#46474c]">
+                  <strong>변수</strong>를 클릭하면 문자 내용에 포함됩니다.
+                </p>
+              </li>
+              <li className="flex items-center gap-2">
+                <Check className="size-4 text-[#46474c]" />
+                <p className="font-apple-medium text-sm text-[#46474c]">
+                  <strong>변수</strong>를 클릭하면 치환된 결과가 미리보기에
+                  보여집니다.
                 </p>
               </li>
             </ul>

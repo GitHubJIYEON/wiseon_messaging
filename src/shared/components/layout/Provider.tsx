@@ -17,7 +17,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
     <NuqsAdapter>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>{children}</TooltipProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <Toaster position="bottom-center" />
       </QueryClientProvider>
     </NuqsAdapter>
